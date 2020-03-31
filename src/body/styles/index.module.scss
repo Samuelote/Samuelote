@@ -1,0 +1,36 @@
+@import '../../colors.module.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  
+  align-items: center;
+}
+.valueContainer {
+  display:flex;
+  flex-direction: column;
+  width:100%;
+  justify-content: center;
+  align-items:center;
+  padding-bottom:20px;
+}
+
+.valueBoxes {
+  display:flex;
+  justify-content: space-evenly;
+  align-items:center;
+  flex-direction: row;
+  flex-wrap:wrap;
+  width: 100%;
+}
+.switchContainer {
+  display: flex;
+  align-items: center;
+  width: calc(100% - 10px);
+  font-size: 17px;
+  padding:10px 0px;
+  padding-left:10px;
+}
+.switchText {
+  margin-left:10px;
+}
