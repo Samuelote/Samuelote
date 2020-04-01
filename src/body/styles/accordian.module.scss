@@ -3,7 +3,6 @@
 @keyframes fadeIn {
   to {
     opacity: 1;
-    min-height:300px;
   }
 }
 
@@ -15,7 +14,7 @@
   padding:5px;
   text-align: left;
   font-size: 14px;
-  border-bottom: 1px solid $primary-bg-color;
+  border-bottom: 1px solid $border-primary;
   text-transform: uppercase;
   position: relative;
   display:flex;
@@ -33,4 +32,6 @@
   animation: fadeIn .2s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+  min-height:100px;
+
 }

@@ -4,7 +4,7 @@
   display:flex;
   justify-content: space-between;
   padding: 5px 10px;
-  border: 1px solid $highlight-color;
+  border: 1px solid $border-primary;
 }
 .singleRow {
   @include row;
@@ -14,7 +14,7 @@
   @include row;
   margin-top:10px;
   background: $primary-bg-color;
-  border-bottom: 2px solid $highlight-color;
+  border-bottom: 2px solid $border-primary;
 }
 .tableContainer {
   margin: 0px 10px;
