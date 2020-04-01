@@ -3,16 +3,19 @@ import Switch from 'react-ios-switch';
 
 import ValueBox from "./components/ValueBox"
 import {
-  valueBoxes, valueContainer, switchContainer, switchText, container
+  valueBoxes, valueContainer, switchContainer, switchText, container, chartView
 } from "./styles/index.module.scss"
-import { filesO } from 'react-icons-kit/fa';
+import HeatMapView from './components/HeatMap';
+import BarChart from './components/BarChart';
+import Table from './components/Table';
+import Accordian from './components/Accordian';
 
 const Body = ({ state }) => {
   const [shipping, setShipping] = useState(false)
   const {
     currency_type, total_earnings,
     avg_price, avg_total, avg_shipping, total_shipping_cost,
-    files
+    avg_time_listed, files
   } = state.data
   return (
     <div className={container}>
@@ -29,6 +32,12 @@ const Body = ({ state }) => {
           <ValueBox
             title="Items Sold"
             value={files ? files.length : null}
+            halfSize
+          />
+          <ValueBox
+            title="Avg. Days Listed"
+            value={`${avg_time_listed}`}
+            halfSize
           />
           <ValueBox
             title="Total Earnings"
@@ -42,8 +51,27 @@ const Body = ({ state }) => {
             subValue={shipping ? `$${avg_price} + $${avg_shipping}` : null}
             currency_type={currency_type}
           />
-
         </div>
+        <div className={chartView}>
+          <Accordian
+            title="Sale Hisotry"
+            component={<BarChart state={state.data} />}
+          />
+        </div>
+        <div className={chartView}>
+          <Accordian
+            title="Recent Sales"
+            component={<Table state={state.data} />}
+          />
+        </div>
+
+        <div className={chartView}>
+          <Accordian
+            title="Sale History"
+            component={<HeatMapView state={state.data} />}
+          />
+        </div>
+
       </div>
     </div>
   )

@@ -1,0 +1,11 @@
+/*  this is used for classes that cannot be avoided from being global and not modular */
+
+.apexcharts-reset-icon,
+.apexcharts-pan-icon,
+.apexcharts-zoomout-icon,
+.apexcharts-zoomin-icon,
+.apexcharts-zoom-icon,
+.apexcharts-menu-icon
+{
+  /* display: none; */
+}

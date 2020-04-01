@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import Files from 'react-files'
-import { processFiles } from "./util"
+import { processFiles } from "./utils"
 import DateDisplay from "./DateDisplay"
 import { exampleFile } from "../assets/example_file.js"
+
+import { displayContainer } from "./styles/index.module.scss"
 const Header = ({ state, setState }) => {
   const [files, updateFiles] = useState([]);
   const [useExample, setUseExample] = useState(true);
@@ -59,7 +61,7 @@ const Header = ({ state, setState }) => {
       })}
       {
         state.data.files ?
-          <div>
+          <div className={displayContainer}>
             <DateDisplay state={state} setState={setState} />
           </div>
           : null

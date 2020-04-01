@@ -3,15 +3,19 @@
 @keyframes fadeIn {
   to {color: rgba(0,0,0,1)}
 }
-
-.container {
+@mixin cont {
   margin: 2px 5px;
   width:100%;
-  // border: 1px solid $border-primary;
   background: $secondary-bg-color;
   max-width: 300px;
 }
-
+.container {
+  @include cont;
+}
+.halfcontainer {
+  @include cont;
+  width: 45%;
+}
 .box_title {
   padding:5px;
   text-align: left;

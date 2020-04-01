@@ -68,14 +68,19 @@ const setUpState = (files) => {
   data.avg_price = 0;
   data.avg_shipping = 0;
   data.avg_total = 0;
+  data.avg_time_listed = 0;
   data.currency_type = files[0]["item_price"][0]
   files.forEach((file) => {
+    const miliSeconds = new Date(file.date_of_sale).getTime() - new Date(file.date_of_listing).getTime()
     data.avg_price += currency(file["item_price"]).value
     data.avg_shipping += currency(file["buyer_shipping_cost"]).value
     data.avg_total += currency(file["total"]).value
     data.total_earnings += currency(file["total"]).value
     data.total_shipping_cost += currency(file["buyer_shipping_cost"]).value
+    data.avg_time_listed += miliSeconds / (1000 * 3600 * 24);
+
   })
+  data.avg_time_listed = parseInt(data.avg_time_listed / files.length);
   data.avg_price = parseFloat(data.avg_price / files.length).toFixed(2);
   data.avg_shipping = parseFloat(data.avg_shipping / files.length).toFixed(2);
   data.avg_total = parseFloat(data.avg_total / files.length).toFixed(2);
@@ -88,13 +93,13 @@ const cleanAndSort = (originalFiles) => {
   const filesToMap = originalFiles.slice().filter(row => row[0] !== "Date of sale")
   const newFiles = [];
 
-  //get's rid of duplicates and icoverts arrays to objects
+  //get's rid of duplicates and converts arrays to objects
   filesToMap.forEach((row, i) => {
     const item = {}
     originalFiles[0].forEach((key, i) => {
       const keyStr = key.toLowerCase().replace(/ /g, "_");
       const val =
-        ('date_of_sale' === keyStr || 'date_of_listring' === keyStr)
+        ('date_of_sale' === keyStr || 'date_of_listing' === keyStr)
           ? moment(row[i], 'DD-MM-YYYY').format("MM-DD-YYYY")
           : row[i]
 
