@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { mainContainer } from "../styles/index.module.scss"
+import { mainContainer, subContainer } from "../styles/index.module.scss"
 
-import Header from "../../header"
+// import Header from "../../header"
 import Body from "../../body"
 
 
@@ -11,8 +11,11 @@ const Core = () => {
   const updateState = (newState) => setState({ ...state, ...newState })
   return (
     <div className={mainContainer}>
-      <Header state={state} setState={updateState} />
+      {/* <div className={subContainer}> */}
+
+      {/* <Header state={state} setState={updateState} /> */}
       <Body state={state} setState={updateState} />
+      {/* </div> */}
     </div>
   )
 }

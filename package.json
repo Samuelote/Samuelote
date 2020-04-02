@@ -19,7 +19,8 @@
     "react-iframe": "^1.8.0",
     "react-ios-switch": "^0.1.19",
     "react-papaparse": "^3.0.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "recharts": "^1.8.5"
   },
   "scripts": {
     "start": "react-scripts start",
