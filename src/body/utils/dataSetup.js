@@ -90,6 +90,7 @@ const setUpState = (files) => {
 }
 //Util function that cleans up format and sorts our files
 const cleanAndSort = (originalFiles) => {
+  //gets rid of header row
   const filesToMap = originalFiles.slice().filter(row => row[0] !== "Date of sale")
   const newFiles = [];
 
@@ -98,12 +99,21 @@ const cleanAndSort = (originalFiles) => {
     const item = {}
     originalFiles[0].forEach((key, i) => {
       const keyStr = key.toLowerCase().replace(/ /g, "_");
-      const val =
-        ('date_of_sale' === keyStr || 'date_of_listing' === keyStr)
-          ? moment(row[i], 'DD-MM-YYYY').format("MM-DD-YYYY")
-          : row[i]
+      const val = () => {
+        if ('date_of_sale' === keyStr || 'date_of_listing' === keyStr) {
+          //converts UTC to local time
+          const utc = moment.utc(`${row[i]} ${row[1]}`, 'DD-MM-YYYY h:mm A').format()
+          return moment.utc(utc).local().format("MM-DD-YYYY")
+        }
+        else if (keyStr === "time_of_sale") {
+          const utc = moment.utc(`${row[0]} ${row[i]}`, 'DD-MM-YYYY h:mm A').format()
+          return moment.utc(utc).local().format("hh:mm A")
+        }
+        return row[i]
+      }
 
-      item[keyStr] = val
+
+      item[keyStr] = val()
     })
     const existsAlready = newFiles.find(e => JSON.stringify(e) === JSON.stringify(item))
     if (!existsAlready) {
