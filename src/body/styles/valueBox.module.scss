@@ -4,7 +4,7 @@
   to {color: rgba(0,0,0,1)}
 }
 @mixin cont {
-  margin: 2px 5px;
+  margin: 2px 10px;
   width:100%;
   background: $secondary-bg-color;
   max-width: 300px;
@@ -21,12 +21,12 @@
   text-align: left;
   font-size: 14px;
   border-bottom: 1px solid $border-primary;
-  text-transform: uppercase;
   position: relative;
   display:flex;
 }
 .box_subValue {
   padding:5px;
+  padding-left: 10px;
   font-size: 17px;
   text-align: left;
   color: rgba(0,0,0,0);
@@ -36,6 +36,7 @@
 }
 .box_value {
   padding:5px;
+  padding-left: 10px;
   text-align: left;
   font-size: 25px;
   font-weight:500;
@@ -54,4 +55,10 @@
 
 .box_arrow {
   margin-right: 5px;
+}
+
+@media only screen and (max-width: 860px) {
+  .halfcontainer {
+   width: 25%;
+  }
 }
