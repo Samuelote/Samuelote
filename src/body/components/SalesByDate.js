@@ -1,13 +1,14 @@
 import React, { useState } from "react"
 import {
   ComposedChart, Bar, Line, ResponsiveContainer,
-  XAxis, CartesianGrid, Tooltip,
+  XAxis, Tooltip,
 } from 'recharts';
 import Switch from 'react-ios-switch';
 
-import { groupDataBy } from "./utils"
-import { chartContainer, switchContainer, label } from "../styles/barChart.module.scss"
+import { groupDataBy } from "../utils/barchart"
+import { chartContainer, switchContainer, label } from "../styles/salesByDate.module.scss"
 import moment from "moment";
+import BooleanSwitch from "./BooleanSwitch";
 
 const BarChartView = ({ state }) => {
   const [showEmptyDates, setShowEmptyDates] = useState(false);
@@ -15,6 +16,12 @@ const BarChartView = ({ state }) => {
   const chartData = groupDataBy("date_of_sale", state, showEmptyDates);
   return (
     <div >
+      <BooleanSwitch
+        title1="Bar Chart"
+        title2="Line Chart"
+        event={() => setBarChart(!barChart)}
+        bool={barChart}
+      />
       <div className={switchContainer}>
         <div className={label}>
           Show dates with no sales
@@ -24,17 +31,7 @@ const BarChartView = ({ state }) => {
           onChange={() => setShowEmptyDates(!showEmptyDates)}
         />
       </div>
-      <div className={switchContainer}>
-        <div className={label}>
-          {barChart ? "Bar Chart" : "Line Chart"}
-        </div>
-        <Switch
-          onColor={"#4CC059"}
-          offColor={"#4CC059"}
-          checked={barChart}
-          onChange={() => setBarChart(!barChart)}
-        />
-      </div>
+
       <div className={chartContainer}>
 
         <ResponsiveContainer width="100%" height="100%">
@@ -42,12 +39,11 @@ const BarChartView = ({ state }) => {
             data={chartData}
             margin={{ top: 20, right: 30, left: 30, bottom: 30 }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="Date Sold" tickFormatter={formatXAxis} tick={{ dy: 5 }} />
-            <Tooltip labelFormatter={formatTooltip} />
+            <XAxis dataKey="Date Sold" /*tickFormatter={formatXAxis}*/ tick={{ dy: 5 }} />
+            <Tooltip /*labelFormatter={formatTooltip}*/ />
             {barChart
-              ? <Bar dataKey="Items Sold" fill="green" />
-              : <Line dataKey="Items Sold" fill="green" />
+              ? <Bar dataKey="Items Sold" fill="#efb5ea" />
+              : <Line dataKey="Items Sold" stroke="#efb5ea" />
             }
           </ComposedChart>
         </ResponsiveContainer>

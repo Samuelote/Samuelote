@@ -4,7 +4,7 @@ import { Icon } from 'react-icons-kit'
 import { chevronDown, chevronUp } from 'react-icons-kit/ionicons'
 import { container, halfcontainer, box_title, box_subValue, box_value, box_qm, box_arrow } from "../styles/valueBox.module.scss"
 
-const ValueBox = ({ title, subValue = 0, value = 0, currency_type, halfSize }) => {
+const ValueBox = ({ title, subValue = 0, value = 0, currency_type, halfSize, trueCase }) => {
   const [minified, setMini] = useState(false)
   return (
     <div
@@ -15,12 +15,13 @@ const ValueBox = ({ title, subValue = 0, value = 0, currency_type, halfSize }) =
         {
           halfSize ? null :
             <div className={box_arrow}>
-
               <Icon icon={minified ? chevronDown : chevronUp} size={10} />
             </div>
         }
-        {title}
-        {minified ? ` - ${currency_type || ""}${value}` : null}
+        {trueCase ? title : title.toUpperCase()}
+        {minified ?
+          ` - ${currency_type || ""}${trueCase ? value : value.toUpperCase()}`
+          : null}
         {
           halfSize ? null :
             <button className={box_qm} onClick={() => alert('add modal')}>

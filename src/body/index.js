@@ -5,12 +5,13 @@ import ValueBox from "./components/ValueBox"
 import {
   valueBoxes, valueContainer, switchContainer, switchText, container, chartView
 } from "./styles/index.module.scss"
-import HeatMapView from './components/HeatMap';
-import BarChart from './components/BarChart';
+import SalesByDay from './components/SalesByDay';
+import SalesByTime from './components/SalesByTime';
+import SalesByDate from './components/SalesByDate';
 import Table from './components/Table';
 import Accordian from './components/Accordian';
-
-const Body = ({ state }) => {
+import Header from "./Header"
+const Body = ({ state, setState }) => {
   const [shipping, setShipping] = useState(false)
   const {
     currency_type, total_earnings,
@@ -19,7 +20,7 @@ const Body = ({ state }) => {
   } = state.data
   return (
     <div className={container}>
-
+      <Header state={state} setState={setState} />
       <div className={valueContainer}>
         <div className={switchContainer}>
           <Switch
@@ -32,12 +33,12 @@ const Body = ({ state }) => {
           <ValueBox
             title="Items Sold"
             value={files ? files.length : null}
-            halfSize
+
           />
           <ValueBox
             title="Avg. Days Listed"
             value={`${avg_time_listed}`}
-            halfSize
+
           />
           <ValueBox
             title="Total Earnings"
@@ -54,23 +55,31 @@ const Body = ({ state }) => {
         </div>
         <div className={chartView}>
           <Accordian
-            title="Sale Hisotry"
-            component={<BarChart state={state.data} />}
+            title="Sales by time"
+            component={<SalesByTime state={state.data} />}
+          />
+        </div>
+
+        <div className={chartView}>
+          <Accordian
+            title="Sales by Date"
+            component={<SalesByDate state={state.data} />}
           />
         </div>
         <div className={chartView}>
           <Accordian
-            title="Recent Sales"
+            title="Recent Sales (Past Week)"
             component={<Table state={state.data} />}
           />
         </div>
 
         <div className={chartView}>
           <Accordian
-            title="Sale History"
-            component={<HeatMapView state={state.data} />}
+            title="Sales by Day"
+            component={<SalesByDay state={state.data} />}
           />
         </div>
+
 
       </div>
     </div>
