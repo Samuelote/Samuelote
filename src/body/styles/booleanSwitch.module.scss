@@ -1,13 +1,14 @@
 @import '../../colors.module.scss';
+@import '../../global.module.scss';
 
 @mixin btn {
   width: 100%;
   border:none;
   height: 30px;
-  margin-top:3px;
   cursor:pointer;
   font-size: 14px;
   transition: .2s;
+  @include label;
 }
 .container {
   width: 100%;
@@ -16,7 +17,7 @@
 
 .button {
   @include btn;
-  background: $primary-bg-color;
+  background: $inactive-btn;
 }
 .buttonSelected {
   @include btn;

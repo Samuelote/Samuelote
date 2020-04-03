@@ -1,5 +1,16 @@
 @import '../../colors.module.scss';
-
+@mixin Header {
+  background-color: $secondary-bg-color;
+  padding:5px;
+  text-align: left;
+  font-size: 14px;
+  text-transform: uppercase;
+  position: relative;
+  display:flex;
+  height:40px;
+  display:flex;
+  align-items: center;
+}
 @keyframes fadeIn {
   to {
     opacity: 1;
@@ -8,20 +19,14 @@
 
 .container {
   margin:10px;
-  border: 1px solid white;
+  flex: 1;
+}
+.borderHeader {
+  @include Header
+  border-bottom: 1px solid $border-primary;
 }
 .header{
-  background-color: $secondary-bg-color;
-  padding:5px;
-  text-align: left;
-  font-size: 14px;
-  border-bottom: 1px solid $border-primary;
-  text-transform: uppercase;
-  position: relative;
-  display:flex;
-  height:40px;
-  display:flex;
-  align-items: center;
+  @include Header
 }
 .arrowIcon{
   margin-right: 20px;

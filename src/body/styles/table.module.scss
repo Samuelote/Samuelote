@@ -1,24 +1,37 @@
 @import '../../colors.module.scss';
+@import '../../global.module.scss';
 
 @mixin row {
   display:flex;
   justify-content: space-between;
-  padding: 5px 10px;
-  border: 1px solid $border-primary;
+  padding: 15px 10px;
+  @include label;
+
+  // border: 1px solid $border-primary;
+}
+.a {
+  color:black;
 }
 .singleRow {
   @include row;
+  font-weight: 400;
+  color:black;
+  font-size: 15px;
  border-top:none;
+}
+.singleRow:hover {
+  background: $primary-bg-color;
+  transition: .1s;
 }
 .headerRow {
   @include row;
   margin-top:10px;
   background: $primary-bg-color;
-  border-bottom: 2px solid $border-primary;
+  // border-bottom: 2px solid $border-primary;
 }
 .tableContainer {
   margin: 0px 10px;
-  padding-top:5px;
+  padding:5px 0px 15px 0px;
   border-top: none;
 
 }
