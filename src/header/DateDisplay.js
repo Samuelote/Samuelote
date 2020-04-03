@@ -1,43 +1,42 @@
 import React, { useState } from 'react'
-import DatePicker from "react-datepicker"
-import "react-datepicker/dist/react-datepicker.css";
-import { datePicker, inputs, label, inputContainer, presetBtn, btnContainer, container } from "./styles/dateDisplay.module.scss"
-import { filterData } from "./utils"
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import { datePicker, inputs, label, inputContainer, presetBtn, btnContainer, container } from './styles/dateDisplay.module.scss'
+import { filterData } from './utils'
 
 const DateDisplay = ({ state, setState }) => {
-  const [startDate, setStartDate] = useState(new Date(state.data.files[0].date_of_sale));
-  const [endDate, setEndDate] = useState(new Date(state.data.files[state.data.files.length - 1].date_of_sale));
+  const [startDate, setStartDate] = useState(new Date(state.data.files[0].date_of_sale))
+  const [endDate, setEndDate] = useState(new Date(state.data.files[state.data.files.length - 1].date_of_sale))
 
   const setPreset = (type) => {
     switch (type) {
       case 'week':
         const start = new Date().setDate(new Date().getDate() - 7)
-        setStartDate(start);
+        setStartDate(start)
         setState(
           { data: filterData(state.originalData, { start, end: endDate }) }
         )
-        break;
+        break
       case 'month':
-        const startMonth = new Date();
+        const startMonth = new Date()
         startMonth.setMonth(startMonth.getMonth() - 1)
-        setStartDate(startMonth);
+        setStartDate(startMonth)
         setState(
           { data: filterData(state.originalData, { start: startMonth, end: endDate }) }
         )
-        break;
+        break
       case 'full':
         setStartDate(new Date(state.originalData.files[0].date_of_sale))
         setEndDate(new Date(state.data.files[state.data.files.length - 1].date_of_sale))
         setState(
           { data: state.originalData }
         )
-        break;
+        break
       default:
-        return
     }
   }
 
-  if (!state.data.files) return null;
+  if (!state.data.files) return null
   return (
     <div className={container}>
 
@@ -46,13 +45,13 @@ const DateDisplay = ({ state, setState }) => {
         <div className={inputContainer}>
           <div className={label}>
             Start Date:
-        </div>
+          </div>
           <DatePicker
             className={datePicker}
             selected={startDate}
             onChange={date => {
-              let start = date;
-              let end = endDate;
+              const start = date
+              let end = endDate
               if (date >= endDate) { end = date }
               setEndDate(end)
               setStartDate(start)
@@ -63,7 +62,7 @@ const DateDisplay = ({ state, setState }) => {
             }}
             minDate={new Date(state.originalData.files[0].date_of_sale)}
             maxDate={new Date(state.originalData.files[state.originalData.files.length - 1].date_of_sale)}
-            placeholderText="start date"
+            placeholderText='start date'
             popperModifiers={popperModifier}
           />
         </div>
@@ -71,13 +70,13 @@ const DateDisplay = ({ state, setState }) => {
         <div className={inputContainer}>
           <div className={label}>
             End Date:
-        </div>
+          </div>
           <DatePicker
             className={datePicker}
             selected={endDate}
             onChange={date => {
-              let start = startDate;
-              let end = date;
+              let start = startDate
+              const end = date
               if (date <= startDate) { start = date }
               console.log(start, end)
               setEndDate(end)
@@ -90,7 +89,7 @@ const DateDisplay = ({ state, setState }) => {
             minDate={new Date(state.originalData.files[0].date_of_sale)}
             maxDate={new Date(state.originalData.files[state.originalData.files.length - 1].date_of_sale)}
 
-            placeholderText="end date"
+            placeholderText='end date'
             popperModifiers={popperModifier}
 
           />
@@ -112,16 +111,16 @@ const DateDisplay = ({ state, setState }) => {
   )
 }
 
-export default DateDisplay;
+export default DateDisplay
 
 const popperModifier = {
   offset: {
     enabled: true,
-    offset: "-50px, 10px"
+    offset: '-50px, 10px'
   },
   preventOverflow: {
     enabled: true,
     escapeWithReference: false,
-    boundariesElement: "viewport"
+    boundariesElement: 'viewport'
   }
 }

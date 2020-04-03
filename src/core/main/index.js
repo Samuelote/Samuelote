@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { mainContainer, subContainer } from "../styles/index.module.scss"
+import { mainContainer, subContainer } from '../styles/index.module.scss'
 
 // import Header from "../../header"
-import Body from "../../body"
-
+import Body from '../../body'
 
 const Core = () => {
   const initialState = { data: {} }
@@ -20,4 +19,4 @@ const Core = () => {
   )
 }
 
-export default Core;
+export default Core

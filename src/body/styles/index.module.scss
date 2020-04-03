@@ -10,10 +10,11 @@
 .valueContainer {
   display:flex;
   flex-direction: column;
-  max-width:100%;
+  max-width:1000px;
   justify-content: center;
   align-items:center;
   padding-bottom:20px;
+  width:100%;
 }
 
 .valueBoxes {
@@ -22,7 +23,6 @@
   align-items:center;
   flex-direction: row;
   width: 100%;
-  max-width:1000px;
 }
 .switchContainer {
   display: flex;

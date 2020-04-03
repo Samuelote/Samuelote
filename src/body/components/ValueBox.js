@@ -3,11 +3,11 @@ import { questionCircleO } from 'react-icons-kit/fa'
 import { Icon } from 'react-icons-kit'
 import { chevronDown, chevronUp } from 'react-icons-kit/ionicons'
 import {
-  Tooltip,
-} from 'react-tippy';
-import CountUp from 'react-countup';
+  Tooltip
+} from 'react-tippy'
+import CountUp from 'react-countup'
 
-import { container, halfcontainer, box_title, box_subValue, box_value, box_qm, box_arrow } from "../styles/valueBox.module.scss"
+import { container, halfcontainer, box_title, box_subValue, box_value, box_qm, box_arrow } from '../styles/valueBox.module.scss'
 
 const ValueBox = ({
   title,
@@ -29,54 +29,54 @@ const ValueBox = ({
     >
       <div className={box_title}>
         {
-          halfSize ? null :
-            <div className={box_arrow}>
+          halfSize ? null
+            : <div className={box_arrow}>
               <Icon icon={minified ? chevronDown : chevronUp} size={10} />
-            </div>
+              </div>
         }
         {!trueCase && title ? title.toUpperCase() : title}
-        {minified ?
-          ` - ${currency_type || ""}${value}`
+        {minified
+          ? ` - ${currency_type || ''}${value}`
           : null}
         {
-          halfSize || !tooltipHTML ? null :
-            <Tooltip
+          halfSize || !tooltipHTML ? null
+            : <Tooltip
               disabled={!tooltipHTML}
               html={tooltipHTML}
               open={tooltipOpen}
               onRequestClose={() => setTooltipOpen(false)}
-            >
+              >
               <div
                 className={box_qm}
                 onClick={(e) => { e.stopPropagation(); setTooltipOpen(true) }}
               >
                 <Icon icon={questionCircleO} size={17} />
               </div>
-            </Tooltip>
+              </Tooltip>
         }
       </div>
 
       {
-        subValue && !minified ?
-          <div className={box_subValue}>{subValue}</div>
+        subValue && !minified
+          ? <div className={box_subValue}>{subValue}</div>
           : null
       }
       {
-        !minified ?
-          <div className={box_value}>{currency_type}
+        !minified
+          ? <div className={box_value}>{currency_type}
 
             <CountUp
               decimals={float ? 2 : 0}
               start={animate ? 0 : value}
-              end={value}
+              end={float ? parseFloat(value) : typeof value === 'number' ? value : 0}
             />
 
-          </div>
+            </div>
           : null
       }
 
-    </div >
+    </div>
   )
 }
 
-export default ValueBox;
+export default ValueBox

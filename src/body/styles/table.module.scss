@@ -9,6 +9,10 @@
 
   // border: 1px solid $border-primary;
 }
+.container {
+  max-height: 500px;
+    overflow: auto;
+}
 .a {
   color:black;
 }

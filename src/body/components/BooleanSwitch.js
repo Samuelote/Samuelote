@@ -1,7 +1,6 @@
-import React from "react"
+import React from 'react'
 
-import { container, button, buttonSelected } from "../styles/booleanSwitch.module.scss"
-
+import { container, button, buttonSelected } from '../styles/booleanSwitch.module.scss'
 
 const BooleanSwitch = ({ title1, title2, event, bool, big }) => {
   return (
@@ -25,4 +24,3 @@ const BooleanSwitch = ({ title1, title2, event, bool, big }) => {
 }
 
 export default BooleanSwitch
-

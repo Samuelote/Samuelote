@@ -1,23 +1,23 @@
-import React, { useState } from "react"
-import ValueBox from "./ValueBox"
-import Switch from 'react-ios-switch';
+import React, { useState } from 'react'
+import ValueBox from './ValueBox'
+import Switch from 'react-ios-switch'
 import {
-  BarChart, Bar, XAxis, Tooltip, ResponsiveContainer,
-} from 'recharts';
-import { groupByTime } from "../utils/dataGrouping";
-import BooleanSwitch from "./BooleanSwitch";
+  BarChart, Bar, XAxis, Tooltip, ResponsiveContainer
+} from 'recharts'
+import { groupByTime } from '../utils/dataGrouping'
+import BooleanSwitch from './BooleanSwitch'
 
-import { container, switchContainer, label, } from "../styles/salesByTime.module.scss"
+import { subContainer, switchContainer, label } from '../styles/salesByTime.module.scss'
 
 const SalesByDay = ({ state }) => {
   const [viewTable, setView] = useState(true)
   const [timeFormat, setTimeFormat] = useState(false)
-  const data = groupByTime(state, "day");
+  const data = groupByTime(state, 'day')
   return (
     <div>
       <BooleanSwitch
-        title1="Table"
-        title2="Bar Chart"
+        title1='Table'
+        title2='Bar Chart'
         event={() => setView(!viewTable)}
         bool={viewTable}
       />
@@ -30,11 +30,11 @@ const SalesByDay = ({ state }) => {
           onChange={() => setTimeFormat(!timeFormat)}
         />
       </div>
-      <div className={container}>
+      <div className={subContainer}>
 
         {
-          viewTable && data.length ?
-            data.map(({ twelve, twentyFour, sales }, i) => {
+          viewTable && data.length
+            ? data.map(({ twelve, twentyFour, sales }, i) => {
               return <ValueBox
                 key={i}
                 halfSize
@@ -43,14 +43,13 @@ const SalesByDay = ({ state }) => {
                 trueCase
               />
             })
-            :
-            <ResponsiveContainer width="100%" height="100%">
+            : <ResponsiveContainer width='100%' height='100%'>
               <BarChart data={data}>
-                <XAxis dataKey={timeFormat ? "twentyFour" : "twelve"} />
+                <XAxis dataKey={timeFormat ? 'twentyFour' : 'twelve'} />
                 <Tooltip />
-                <Bar dataKey="sales" fill="#efb5ea" />
+                <Bar dataKey='sales' fill='#efb5ea' />
               </BarChart>
-            </ResponsiveContainer>
+              </ResponsiveContainer>
         }
       </div>
     </div>
@@ -58,4 +57,3 @@ const SalesByDay = ({ state }) => {
 }
 
 export default SalesByDay
-

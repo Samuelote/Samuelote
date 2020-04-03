@@ -18,12 +18,13 @@
 .button {
   @include btn;
   background: $inactive-btn;
+  outline-color: $outline;
 }
 .buttonSelected {
   @include btn;
-  background: $text-highlight;
+  background: $highlight-color;
   color:white;
-  outline: $outline;
   letter-spacing: 1px;
   font-weight:600;
+  outline-color: $outline;
 }

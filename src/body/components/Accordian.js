@@ -1,6 +1,6 @@
-import React, { useState } from "react"
+import React, { useState } from 'react'
 import { chevronDown, chevronUp } from 'react-icons-kit/ionicons'
-import { header, arrowIcon, body, container, borderHeader } from "../styles/accordian.module.scss"
+import { header, arrowIcon, body, container, borderHeader } from '../styles/accordian.module.scss'
 import { Icon } from 'react-icons-kit'
 
 const Accordian = ({ title, component, showBorder }) => {
@@ -12,15 +12,16 @@ const Accordian = ({ title, component, showBorder }) => {
         <div className={arrowIcon}>
           <Icon icon={closed ? chevronDown : chevronUp} size={10} />
         </div>
-        <div>{title || "Click to open"}</div>
+        <div>{title || 'Click to open'}</div>
       </div>
-      {
-        closed ? null :
-          <div className={body}>
-            {component}
-          </div>
-      }
-    </div >
+      <div className={body}>
+        {
+          !closed
+            ? component
+            : null
+        }
+      </div>
+    </div>
   )
 }
 

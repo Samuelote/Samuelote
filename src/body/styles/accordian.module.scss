@@ -22,7 +22,7 @@
   flex: 1;
 }
 .borderHeader {
-  @include Header
+  @include Header;
   border-bottom: 1px solid $border-primary;
 }
 .header{
@@ -38,6 +38,6 @@
   animation: fadeIn .2s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  min-height:100px;
+  width: 100%;
 
 }
