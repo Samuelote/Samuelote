@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 import Files from 'react-files'
 import { processFiles } from "./utils/dataSetup"
 import DateDisplay from "./components/DateDisplay"
+import BooleanSwitch from "./components/BooleanSwitch"
 import { exampleFile } from "../assets/example_file.js"
 
-import { displayContainer } from "./styles/index.module.scss"
+import { displayContainer, container } from "./styles/header.module.scss"
 
 const Header = ({ state, setState }) => {
   const [files, updateFiles] = useState([]);
@@ -20,11 +21,7 @@ const Header = ({ state, setState }) => {
       )
     }
   }, [useExample])
-  const deleteFileHandler = (i) => {
-    const copyOfFiles = files.slice();
-    copyOfFiles.splice(i, 1)
-    updateFileHandler(copyOfFiles)
-  }
+
   const updateFileHandler = (listOfFiles) => {
     const newList = listOfFiles
     updateFiles(newList);
@@ -36,8 +33,15 @@ const Header = ({ state, setState }) => {
     )
   }
   return (
-    <div>
-      <button onClick={() => setUseExample(!useExample)}>{useExample ? "Using example file" : "Using file upload"}</button>
+    <div className={container}>
+      <BooleanSwitch
+        bool={useExample}
+        event={() => setUseExample(!useExample)}
+        title1="Using Example"
+        title2="Upload My Own CSV"
+        big
+      />
+
       {
         !useExample ?
           <Files
@@ -51,15 +55,9 @@ const Header = ({ state, setState }) => {
             clickable
           >
             Drop files here or click to upload
-    </Files> : null
+          </Files> : null
       }
-      {files.map((file, i) => {
-        return (
-          <div key={i}>
-            {file.name}
-            <button onClick={() => deleteFileHandler(i)}>delete</button>
-          </div>)
-      })}
+
       {
         state.data.files ?
           <div className={displayContainer}>

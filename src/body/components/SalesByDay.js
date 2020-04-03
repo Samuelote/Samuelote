@@ -11,7 +11,6 @@ import {
 const SalesByDay = ({ state }) => {
   const [viewTable, setView] = useState(true)
   const data = groupByDay(state, "day");
-  // console.log(data)
   return (
     <div>
       <BooleanSwitch
@@ -24,7 +23,7 @@ const SalesByDay = ({ state }) => {
         {
           viewTable && data.length ?
             data.map(({ day, sales }, i) => {
-              return <ValueBox halfSize title={day} value={sales || 0} trueCase />
+              return <ValueBox key={i} halfSize title={day} value={sales || 0} trueCase />
             })
             :
             <ResponsiveContainer width="100%" height="100%">

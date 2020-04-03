@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { questionCircleO } from 'react-icons-kit/fa'
 import { Icon } from 'react-icons-kit'
 import { chevronDown, chevronUp } from 'react-icons-kit/ionicons'
 import {
   Tooltip,
 } from 'react-tippy';
+import CountUp from 'react-countup';
+
 import { container, halfcontainer, box_title, box_subValue, box_value, box_qm, box_arrow } from "../styles/valueBox.module.scss"
 
 const ValueBox = ({
@@ -14,7 +16,9 @@ const ValueBox = ({
   currency_type,
   halfSize,
   trueCase,
-  tooltipHTML
+  tooltipHTML,
+  animate,
+  float
 }) => {
   const [minified, setMini] = useState(false)
   const [tooltipOpen, setTooltipOpen] = useState(false)
@@ -59,7 +63,15 @@ const ValueBox = ({
       }
       {
         !minified ?
-          <div className={box_value}>{currency_type}{value}</div>
+          <div className={box_value}>{currency_type}
+
+            <CountUp
+              decimals={float ? 2 : 0}
+              start={animate ? 0 : value}
+              end={value}
+            />
+
+          </div>
           : null
       }
 

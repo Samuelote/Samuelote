@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
-import { datePicker, inputs, label, inputContainer, presetBtn, btnContainer, container } from "../styles/dateDisplay.module.scss"
+import {
+  datePicker, inputs, label, inputContainer,
+  presetBtn, btnContainer, container
+} from "../styles/dateDisplay.module.scss"
 import { filterData } from "../utils/dataSetup"
 
 const DateDisplay = ({ state, setState }) => {

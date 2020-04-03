@@ -3,16 +3,19 @@ import Switch from 'react-ios-switch';
 
 import ValueBox from "./components/ValueBox"
 import {
-  valueBoxes, valueContainer, switchContainer, switchText, container, chartView, tooltip
+  valueBoxes, valueContainer, switchContainer,
+  switchText, container, singleContainer, tooltip,
+  doubleContainer
 } from "./styles/index.module.scss"
 import SalesByDay from './components/SalesByDay';
 import SalesByTime from './components/SalesByTime';
 import SalesByDate from './components/SalesByDate';
-import Table from './components/Table';
+import RecentSales from './components/RecentSales';
+import ReturningCustomers from './components/ReturningCustomers';
 import Accordian from './components/Accordian';
 import Header from "./Header"
 const Body = ({ state, setState }) => {
-  const [showMore, setShowMore] = useState(false)
+  const [showMore, setShowMore] = useState(null)
   const {
     currency_type, total_earnings,
     avg_price, avg_total, avg_shipping, total_shipping_cost,
@@ -20,8 +23,8 @@ const Body = ({ state, setState }) => {
   } = state.data;
   return (
     <div className={container}>
-      <Header state={state} setState={setState} />
       <div className={valueContainer}>
+        <Header state={state} setState={setState} />
         <div className={switchContainer}>
           <Switch
             checked={showMore}
@@ -32,6 +35,8 @@ const Body = ({ state, setState }) => {
         <div className={valueBoxes}>
 
           <ValueBox
+            float
+            animate={showMore === null}
             tooltipHTML={(
               <div className={tooltip}>
                 Fees: {currency_type}{total_fees_paid}<br></br>
@@ -56,6 +61,8 @@ const Body = ({ state, setState }) => {
             currency_type={currency_type}
           />
           <ValueBox
+            float
+            animate={showMore === null}
             tooltipHTML={(
               <div className={tooltip}>
                 Avg. Item Price: {currency_type}{avg_price}<br></br>
@@ -68,35 +75,43 @@ const Body = ({ state, setState }) => {
             currency_type={currency_type}
           />
           <ValueBox
+            animate={showMore === null}
             title="Items Sold"
             value={files ? files.length : null}
           />
           <ValueBox
+            animate={showMore === null}
             title="Avg. Days Listed"
-            value={`${avg_time_listed}`}
+            value={avg_time_listed}
           />
         </div>
-        <div className={chartView}>
+        <div className={singleContainer}>
           <Accordian
             title="Sales by time"
             component={<SalesByTime state={state.data} />}
           />
         </div>
 
-        <div className={chartView}>
+        <div className={singleContainer}>
           <Accordian
             title="Sales by Date"
             component={<SalesByDate state={state.data} />}
           />
         </div>
-        <div className={chartView}>
+        <div className={doubleContainer}>
           <Accordian
+            showBorder
             title="Recent Sales (Past Week)"
-            component={<Table state={state.data} />}
+            component={<RecentSales state={state.data} />}
+          />
+          <Accordian
+            showBorder
+            title="Returning Customers"
+            component={<ReturningCustomers state={state.data} />}
           />
         </div>
 
-        <div className={chartView}>
+        <div className={singleContainer}>
           <Accordian
             title="Sales by Day"
             component={<SalesByDay state={state.data} />}

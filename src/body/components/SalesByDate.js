@@ -43,7 +43,7 @@ const BarChartView = ({ state }) => {
             <Tooltip /*labelFormatter={formatTooltip}*/ />
             {barChart
               ? <Bar dataKey="Items Sold" fill="#efb5ea" />
-              : <Line dataKey="Items Sold" stroke="#efb5ea" />
+              : <Line dataKey="Items Sold" stroke="#efb5ea" strokeWidth={3} />
             }
           </ComposedChart>
         </ResponsiveContainer>

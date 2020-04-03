@@ -58,3 +58,30 @@ export const groupByTime = (data) => {
 
 
 }
+
+export const groupByBuyer = (data) => {
+  const groupedData = {};
+  const newData = []
+  if (data.files) {
+    // groups data
+    data.files.forEach((file) => {
+      if (groupedData[file.buyer]) {
+        const dateExists = groupedData[file.buyer].find(
+          e => e.date_of_sale === file.date_of_sale
+        )
+        if (!dateExists) {
+          groupedData[file.buyer] = [...groupedData[file.buyer], file]
+        }
+      } else {
+        groupedData[file.buyer] = [file]
+      }
+    })
+    //sets up data in recharts format
+    Object.keys(groupedData).forEach((key) => {
+      if (groupedData[key].length > 1) {
+        newData.push(groupedData[key])
+      }
+    })
+  }
+  return newData;
+}

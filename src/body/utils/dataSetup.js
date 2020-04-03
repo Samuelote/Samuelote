@@ -90,7 +90,7 @@ const setUpState = (files) => {
   data.total_earnings = parseFloat(data.total_earnings).toFixed(2);
   data.total_shipping_cost = parseFloat(data.total_shipping_cost).toFixed(2);
   data.total_fees_paid = parseFloat(data.total_fees_paid).toFixed(2);
-
+  data.getUrl = slug => `https://www.depop.com/${slug}/`
   return data
 }
 //Util function that cleans up format and sorts our files

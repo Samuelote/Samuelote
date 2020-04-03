@@ -36,6 +36,7 @@ const SalesByDay = ({ state }) => {
           viewTable && data.length ?
             data.map(({ twelve, twentyFour, sales }, i) => {
               return <ValueBox
+                key={i}
                 halfSize
                 title={timeFormat ? twentyFour : twelve}
                 value={sales || 0}
