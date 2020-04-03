@@ -55,7 +55,7 @@ const Body = ({ state, setState }) => {
               ${currency_type}${total_fees_paid}
               `
               : null}
-            currency_type={currency_type}
+            currencyType={currency_type}
           />
           <ValueBox
             float
@@ -69,7 +69,7 @@ const Body = ({ state, setState }) => {
             title='Avg. Price per Item'
             value={showMore ? avg_total : avg_price}
             subValue={showMore ? `$${avg_price} + $${avg_shipping}` : null}
-            currency_type={currency_type}
+            currencyType={currency_type}
           />
           <ValueBox
             animate={showMore === null}

@@ -11,20 +11,22 @@
 }
 .container {
   @include cont;
+
 }
 .halfcontainer {
   @include cont;
   width: 45%;
 }
-.box_title {
+.boxTitle {
   padding:5px;
   text-align: left;
   font-size: 14px;
   border-bottom: 1px solid $border-primary;
   position: relative;
   display:flex;
+
 }
-.box_subValue {
+.boxSubValue {
   padding:5px;
   padding-left: 10px;
   font-size: 17px;
@@ -34,7 +36,7 @@
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
-.box_value {
+.boxValue {
   padding:5px;
   padding-left: 10px;
   text-align: left;
@@ -43,7 +45,7 @@
   color: $text-highlight
 }
 
-.box_qm {
+.boxQm {
   cursor:pointer;
   position: absolute;
   right: 5px;
@@ -53,7 +55,7 @@
   border: none;
 }
 
-.box_arrow {
+.boxArrow {
   margin-right: 5px;
 }
 
