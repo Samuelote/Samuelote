@@ -3,7 +3,7 @@ import Switch from 'react-ios-switch';
 
 import ValueBox from "./components/ValueBox"
 import {
-  valueBoxes, valueContainer, switchContainer, switchText, container, chartView
+  valueBoxes, valueContainer, switchContainer, switchText, container, chartView, tooltip
 } from "./styles/index.module.scss"
 import SalesByDay from './components/SalesByDay';
 import SalesByTime from './components/SalesByTime';
@@ -12,45 +12,68 @@ import Table from './components/Table';
 import Accordian from './components/Accordian';
 import Header from "./Header"
 const Body = ({ state, setState }) => {
-  const [shipping, setShipping] = useState(false)
+  const [showMore, setShowMore] = useState(false)
   const {
     currency_type, total_earnings,
     avg_price, avg_total, avg_shipping, total_shipping_cost,
-    avg_time_listed, files
-  } = state.data
+    avg_time_listed, files, total_fees_paid
+  } = state.data;
   return (
     <div className={container}>
       <Header state={state} setState={setState} />
       <div className={valueContainer}>
         <div className={switchContainer}>
           <Switch
-            checked={shipping}
-            onChange={() => setShipping(!shipping)}
+            checked={showMore}
+            onChange={() => setShowMore(!showMore)}
           />
-          <div className={switchText}>Factor in shipping</div>
+          <div className={switchText}>Show More</div>
         </div>
         <div className={valueBoxes}>
+
+          <ValueBox
+            tooltipHTML={(
+              <div className={tooltip}>
+                Fees: {currency_type}{total_fees_paid}<br></br>
+                Shipping: {currency_type}{total_shipping_cost}
+              </div>
+            )}
+            title={showMore ? "Net Earnings" : "Gross Earnings"}
+            value={showMore ?
+              (total_earnings - total_shipping_cost - total_fees_paid).toFixed(2)
+              :
+              total_earnings
+            }
+            subValue={showMore ?
+              `${currency_type}${total_earnings} 
+              -
+              ${currency_type}${total_shipping_cost}
+              -
+              ${currency_type}${total_fees_paid}
+              `
+              : null
+            }
+            currency_type={currency_type}
+          />
+          <ValueBox
+            tooltipHTML={(
+              <div className={tooltip}>
+                Avg. Item Price: {currency_type}{avg_price}<br></br>
+                Shipping: {currency_type}{avg_shipping}
+              </div>
+            )}
+            title="Avg. Price per Item"
+            value={showMore ? avg_total : avg_price}
+            subValue={showMore ? `$${avg_price} + $${avg_shipping}` : null}
+            currency_type={currency_type}
+          />
           <ValueBox
             title="Items Sold"
             value={files ? files.length : null}
-
           />
           <ValueBox
             title="Avg. Days Listed"
             value={`${avg_time_listed}`}
-
-          />
-          <ValueBox
-            title="Total Earnings"
-            value={shipping ? total_earnings : (total_earnings - total_shipping_cost).toFixed(2)}
-            subValue={shipping ? `$${(total_earnings - total_shipping_cost).toFixed(2)} + $${total_shipping_cost}` : null}
-            currency_type={currency_type}
-          />
-          <ValueBox
-            title="Avg. Price per Item"
-            value={shipping ? avg_total : avg_price}
-            subValue={shipping ? `$${avg_price} + $${avg_shipping}` : null}
-            currency_type={currency_type}
           />
         </div>
         <div className={chartView}>
