@@ -1,7 +1,9 @@
+@import "./colors.module.scss";
+
 @mixin label{
   font-weight: 600;
   font-size: 13px;
   line-height: 18px;
   text-transform: uppercase;
-  color: rgb(126, 126, 126);
+  color: $text-subtle;
 }

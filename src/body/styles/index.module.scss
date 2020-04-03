@@ -7,14 +7,16 @@
   justify-content: space-between;  
   align-items: center;
 }
-.valueContainer {
+.subContainer {
   display:flex;
   flex-direction: column;
-  max-width:1000px;
+  max-width:1500px;
   justify-content: center;
   align-items:center;
   padding-bottom:20px;
   width:100%;
+  margin-top: 20px;
+
 }
 
 .valueBoxes {
@@ -39,14 +41,12 @@
 
 .singleContainer {
   width:100%;
-  max-width:1000px;
 }
 .doubleContainer {
   display:flex;
   justify-content: space-between;
   flex-wrap: wrap;
   width:100%;
-  max-width:1000px;
 }
 .tooltip {
   text-align: left;

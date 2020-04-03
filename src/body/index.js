@@ -3,7 +3,7 @@ import Switch from 'react-ios-switch'
 
 import ValueBox from './components/ValueBox'
 import {
-  valueBoxes, valueContainer, switchContainer,
+  valueBoxes, subContainer, switchContainer,
   switchText, container, singleContainer, tooltip,
   doubleContainer
 } from './styles/index.module.scss'
@@ -13,6 +13,7 @@ import SalesByDate from './components/SalesByDate'
 import RecentSales from './components/RecentSales'
 import ReturningCustomers from './components/ReturningCustomers'
 import Accordian from './components/Accordian'
+import TopSection from './TopSection'
 import Header from './Header'
 const Body = ({ state, setState }) => {
   const [showMore, setShowMore] = useState(null)
@@ -23,8 +24,9 @@ const Body = ({ state, setState }) => {
   } = state.data
   return (
     <div className={container}>
-      <div className={valueContainer}>
-        <Header state={state} setState={setState} />
+      <Header />
+      <div className={subContainer}>
+        <TopSection state={state} setState={setState} />
         <div className={switchContainer}>
           <Switch
             checked={showMore}

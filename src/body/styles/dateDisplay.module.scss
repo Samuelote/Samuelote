@@ -41,6 +41,8 @@
   text-align:center;
   background: $input;
   width:100%;
+  color: $text-subtle;
+  font-weight: 600;
 }
 
 .btnContainer { 
@@ -62,6 +64,10 @@
 
   .container {
     max-width: 350px;
+  }
+  .datePicker {
+    color: $text-subtle;
+    font-weight: 500;
   }
   .inputs {
     flex-direction: column;
