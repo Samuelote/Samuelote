@@ -29,8 +29,6 @@ export const groupByTime = (data) => {
   if (data.files) {
     // groups data
     data.files.forEach((file) => {
-      var offset = new Date().getTimezoneOffset()
-      // console.log(file.time_of_sale, offset)
       const hour = moment(file.time_of_sale, "hh:mm A").format("h a")
       if (groupedData[hour]) {
         groupedData[hour]++;
@@ -52,9 +50,9 @@ export const groupByTime = (data) => {
       })
     })
   }
-  console.log(newData.sort((a, b) => {
+  newData.sort((a, b) => {
     return a.sortingId - b.sortingId
-  }))
+  })
 
   return newData;
 

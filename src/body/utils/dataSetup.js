@@ -65,6 +65,7 @@ const setUpState = (files) => {
   data.files = files;
   data.total_earnings = 0;
   data.total_shipping_cost = 0;
+  data.total_fees_paid = 0;
   data.avg_price = 0;
   data.avg_shipping = 0;
   data.avg_total = 0;
@@ -77,8 +78,10 @@ const setUpState = (files) => {
     data.avg_total += currency(file["total"]).value
     data.total_earnings += currency(file["total"]).value
     data.total_shipping_cost += currency(file["buyer_shipping_cost"]).value
+    data.total_fees_paid +=
+      parseFloat(currency(file["depop_fee"]).value) +
+      parseFloat(currency(file["depop_payments_fee"]).value);
     data.avg_time_listed += miliSeconds / (1000 * 3600 * 24);
-
   })
   data.avg_time_listed = parseInt(data.avg_time_listed / files.length);
   data.avg_price = parseFloat(data.avg_price / files.length).toFixed(2);
@@ -86,6 +89,8 @@ const setUpState = (files) => {
   data.avg_total = parseFloat(data.avg_total / files.length).toFixed(2);
   data.total_earnings = parseFloat(data.total_earnings).toFixed(2);
   data.total_shipping_cost = parseFloat(data.total_shipping_cost).toFixed(2);
+  data.total_fees_paid = parseFloat(data.total_fees_paid).toFixed(2);
+
   return data
 }
 //Util function that cleans up format and sorts our files
