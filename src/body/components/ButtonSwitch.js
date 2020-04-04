@@ -2,21 +2,20 @@ import React from 'react'
 
 import { container, button, buttonSelected } from '../styles/booleanSwitch.module.scss'
 
-const BooleanSwitch = ({ title1, title2, event, bool, big }) => {
-
+const ButtonSwitch = ({ title1, title2, event1, event2, bool, big }) => {
   return (
     <div className={container}>
       <button
         className={!bool ? button : buttonSelected}
         style={big ? { height: '50px', fontSize: '18px' } : {}}
-        onClick={event}
+        onClick={event1}
       >
         {title1}
       </button>
       <button
         className={bool ? button : buttonSelected}
         style={big ? { height: '50px', fontSize: '18px' } : {}}
-        onClick={event}
+        onClick={event2}
 
       >
         {title2}
@@ -25,4 +24,4 @@ const BooleanSwitch = ({ title1, title2, event, bool, big }) => {
   )
 }
 
-export default BooleanSwitch
+export default ButtonSwitch

@@ -4,7 +4,7 @@ import { buyers, headers } from './example_buyers'
 export const setUpExampleFile = () => {
   const mockFile = [headers]
   const currency = Math.round(Math.random()) ? '$' : '£'
-  function randomDate(start, end) {
+  function randomDate (start, end) {
     return moment(new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime())))
   }
   const num = Math.floor(Math.random() * (120 - 90) + 90)

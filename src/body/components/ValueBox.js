@@ -21,7 +21,6 @@ const ValueBox = ({
   float
 }) => {
   const [minified, setMini] = useState(false)
-  const [tooltipOpen, setTooltipOpen] = useState(false)
   return (
     <div
       className={halfSize ? halfcontainer : container}
@@ -46,12 +45,9 @@ const ValueBox = ({
               <Tooltip
                 disabled={!tooltipHTML}
                 html={tooltipHTML}
-                open={tooltipOpen}
-                onRequestClose={() => setTooltipOpen(false)}
               >
                 <div
                   className={boxQm}
-                  onClick={(e) => { e.stopPropagation(); setTooltipOpen(true) }}
                 >
                   <Icon icon={questionCircleO} size={20} />
                 </div>

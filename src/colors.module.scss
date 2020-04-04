@@ -7,3 +7,14 @@ $text-subtle: #7e7e7e;
 $outline: #292929;
 $inactive-btn: #ededed;
 $input: #ededed;
+$charcoal: rgb(93, 93, 93);
+
+:export {
+  primaryBgColor: $primary-bg-color;
+  secondaryBgColor: $secondary-bg-color;
+  hightlightColor: $highlight-color;
+  borderPrimary: $border-primary;
+  textHighlight:$text-highlight;
+  textSubtle: $text-subtle;
+  inactive-btn: $inactive-btn;
+}

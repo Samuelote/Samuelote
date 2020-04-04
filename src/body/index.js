@@ -15,6 +15,7 @@ import ReturningCustomers from './components/ReturningCustomers'
 import Accordian from './components/Accordian'
 import TopSection from './TopSection'
 import Header from './Header'
+
 const Body = ({ state, setState }) => {
   const [showMore, setShowMore] = useState(null)
   const {
@@ -25,8 +26,10 @@ const Body = ({ state, setState }) => {
   return (
     <div className={container}>
       <Header />
+
       <div className={subContainer}>
         <TopSection state={state} setState={setState} />
+
         {
           state.data.files
             ? (

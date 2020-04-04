@@ -1,0 +1,89 @@
+@import '../../colors.module.scss';
+@import '../../global.module.scss';
+
+
+@mixin button {
+  @include label;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+  background: $highlight-color;
+  color: $secondary-bg-color;
+  border: none;
+  height: 30px;
+  transition: .1s;
+  outline-color: $outline;
+}
+.container {
+  width: 100%;
+  display: flex;
+}
+
+.modal {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  border: 2px solid $highlight-color;
+  background: $secondary-bg-color;
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 10px;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  width: 350px;
+}
+
+.dropzone {
+  border: 5px dashed $inactive-btn;
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $text-subtle;
+  transition: .2s;
+  cursor: pointer;
+}
+.closeX {
+  position: absolute;
+  right:10px;
+  color:grey;
+  background:none;
+  border:none;
+  cursor:pointer;
+  font-size: 14px;
+  outline-color: $outline;
+}
+.closeX:hover {
+  color: black;
+}
+.heading {
+  color: $charcoal;
+}
+.dropzone:hover, .activeDropzone {
+  border-color: $charcoal;
+  color: $charcoal;
+}
+
+.file {
+  margin-top: 10px;
+}
+
+.btn {
+  @include button;
+
+}
+.btnDisabled {
+  @include button;
+  cursor: not-allowed;
+  background: grey;
+  letter-spacing: 2px;
+}
+
+.btn:hover {
+  letter-spacing: 2px;
+}
