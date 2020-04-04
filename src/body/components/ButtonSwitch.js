@@ -7,14 +7,14 @@ const ButtonSwitch = ({ title1, title2, event1, event2, bool, big }) => {
     <div className={container}>
       <button
         className={!bool ? button : buttonSelected}
-        style={big ? { height: '50px', fontSize: '18px' } : {}}
+        style={big ? { height: '50px', fontSize: '14px' } : {}}
         onClick={event1}
       >
         {title1}
       </button>
       <button
         className={bool ? button : buttonSelected}
-        style={big ? { height: '50px', fontSize: '18px' } : {}}
+        style={big ? { height: '50px', fontSize: '14px' } : {}}
         onClick={event2}
 
       >

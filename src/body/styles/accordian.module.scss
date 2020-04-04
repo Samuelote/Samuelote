@@ -35,10 +35,9 @@
 }
 .body{
   background-color: $secondary-bg-color;
-  opacity: 0;
-  animation: fadeIn .2s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
+  // opacity: 1;
   width: 100%;
-
+  // animation: fadeIn 5s;
+  // animation-iteration-count: 1;
+  // animation-fill-mode: forwards;
 }
