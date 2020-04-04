@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import {
@@ -12,6 +12,11 @@ const DateDisplay = ({ state, setState }) => {
   const [startDate, setStartDate] = useState(new Date(files[0].date_of_sale))
   const [endDate, setEndDate] = useState(new Date(files[files.length - 1].date_of_sale))
   const [activeBtn, activateBtn] = useState(null)
+
+  useEffect(() => {
+    setStartDate(new Date(files[0].date_of_sale))
+    setEndDate(new Date(files[files.length - 1].date_of_sale))
+  }, [files])
   const setPreset = (type) => {
     activateBtn(type)
     switch (type) {
@@ -40,8 +45,6 @@ const DateDisplay = ({ state, setState }) => {
       default:
     }
   }
-
-  // if (!state.data.files) return null
   return (
     <div className={container}>
 

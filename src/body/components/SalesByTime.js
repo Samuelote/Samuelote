@@ -6,6 +6,7 @@ import {
 } from 'recharts'
 import { groupByTime } from '../utils/dataGrouping'
 import BooleanSwitch from './BooleanSwitch'
+import { chartFill } from '../../colors.module.scss'
 
 import { subContainer, switchContainer, label } from '../styles/salesByTime.module.scss'
 
@@ -47,9 +48,9 @@ const SalesByDay = ({ state }) => {
               <BarChart data={data}>
                 <XAxis dataKey={timeFormat ? 'twentyFour' : 'twelve'} />
                 <Tooltip />
-                <Bar dataKey='sales' fill='#efb5ea' />
+                <Bar dataKey='sales' fill={chartFill} />
               </BarChart>
-              </ResponsiveContainer>
+            </ResponsiveContainer>
         }
       </div>
     </div>

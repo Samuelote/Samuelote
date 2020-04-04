@@ -5,6 +5,7 @@ import {
 } from 'recharts'
 import Switch from 'react-ios-switch'
 
+import { chartFill } from '../../colors.module.scss'
 import { groupByDate } from '../utils/dataGrouping'
 import { chartContainer, switchContainer, label } from '../styles/salesByDate.module.scss'
 import moment from 'moment'
@@ -43,8 +44,8 @@ const BarChartView = ({ state }) => {
             <XAxis dataKey='Date Sold' tick={{ dy: 5 }} tickFormatter={formatXAxis} />
             <Tooltip labelFormatter={formatTooltip} />
             {barChart
-              ? <Bar dataKey='Items Sold' fill='#efb5ea' />
-              : <Line dataKey='Items Sold' stroke='#efb5ea' strokeWidth={3} />}
+              ? <Bar dataKey='Items Sold' fill={chartFill} />
+              : <Line dataKey='Items Sold' stroke={chartFill} strokeWidth={3} />}
           </ComposedChart>
         </ResponsiveContainer>
       </div>

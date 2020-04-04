@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ValueBox from './ValueBox'
 
+import { chartFill } from '../../colors.module.scss'
 import { salesByDayContainer } from '../styles/salesByDay.module.scss'
 import { groupByDay } from '../utils/dataGrouping'
 import BooleanSwitch from './BooleanSwitch'
@@ -29,9 +30,9 @@ const SalesByDay = ({ state }) => {
               <BarChart data={data}>
                 <XAxis dataKey='day' />
                 <Tooltip />
-                <Bar dataKey='sales' fill='#efb5ea' />
+                <Bar dataKey='sales' fill={chartFill} />
               </BarChart>
-              </ResponsiveContainer>
+            </ResponsiveContainer>
         }
       </div>
     </div>

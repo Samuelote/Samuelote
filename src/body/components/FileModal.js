@@ -49,7 +49,7 @@ const FileModal = ({ open, closeModal, setState }) => {
           Drop files here or click to upload
         </Files>
         {
-          files.map(({ name }, i) => <div className={file}>{i + 1}. {name}</div>)
+          files.map(({ name }, i) => <div className={file} key={i}>{i + 1}. {name}</div>)
         }
         <button
           disabled={!files.length}
@@ -69,17 +69,3 @@ const FileModal = ({ open, closeModal, setState }) => {
 }
 
 export default FileModal
-
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    padding: '10px',
-    width: '100%',
-    maxWidth: '350px'
-  }
-}
