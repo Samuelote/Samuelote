@@ -1,0 +1,20 @@
+@import '../../colors.module.scss';
+@import '../../global.module.scss';
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content:center;
+}
+.subContainer {
+  width: 80%;
+  background: $secondary-bg-color;
+  height: 100px;
+  margin-top: 20px;
+  border-radius: 4px;
+  border: 2px solid $highlight-color;
+}
+
+.h1 {
+  text-align: center;
+}

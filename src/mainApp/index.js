@@ -14,9 +14,9 @@ import RecentSales from './components/RecentSales'
 import ReturningCustomers from './components/ReturningCustomers'
 import Accordian from './components/Accordian'
 import TopSection from './TopSection'
-import Header from './Header'
 
 const Body = ({ state, setState }) => {
+  console.log(state)
   const [showMore, setShowMore] = useState(null)
   const {
     currency_type, total_earnings,
@@ -25,7 +25,6 @@ const Body = ({ state, setState }) => {
   } = state.data
   return (
     <div className={container}>
-      <Header />
 
       <div className={subContainer}>
         <TopSection state={state} setState={setState} />
@@ -144,5 +143,5 @@ const Body = ({ state, setState }) => {
 
 const NoneFound = ({ msg }) => (<div className={NoData}>
   {msg || 'No data found. Either change the date selection or upload another file.'}
-</div>)
+                                </div>)
 export default Body

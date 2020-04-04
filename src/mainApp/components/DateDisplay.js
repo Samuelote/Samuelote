@@ -27,7 +27,7 @@ const DateDisplay = ({ state, setState }) => {
   ) {
     setState(
       {
-        warning: `Your latest date of record is ${moment(originalDataEndDate).format('MMMM Do YYYY')}. 
+        warning: `Your latest sale on record is ${moment(originalDataEndDate).format('MMMM Do YYYY')}. 
       If any sales have occurred between ${moment(originalDataEndDate).format('MMMM Do YYYY')} and now, 
       those sales will not be accounted for in this report.`
       })
