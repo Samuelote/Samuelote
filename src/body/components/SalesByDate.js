@@ -5,7 +5,7 @@ import {
 } from 'recharts'
 import Switch from 'react-ios-switch'
 
-import { groupDataBy } from '../utils/barchart'
+import { groupByDate } from '../utils/dataGrouping'
 import { chartContainer, switchContainer, label } from '../styles/salesByDate.module.scss'
 import moment from 'moment'
 import BooleanSwitch from './BooleanSwitch'
@@ -13,7 +13,8 @@ import BooleanSwitch from './BooleanSwitch'
 const BarChartView = ({ state }) => {
   const [showEmptyDates, setShowEmptyDates] = useState(false)
   const [barChart, setBarChart] = useState(true)
-  const chartData = groupDataBy('date_of_sale', state, showEmptyDates)
+  const chartData = groupByDate('date_of_sale', state, showEmptyDates)
+  // console.log(chartData)
   return (
     <div>
       <BooleanSwitch
@@ -39,8 +40,8 @@ const BarChartView = ({ state }) => {
             data={chartData}
             margin={{ top: 20, right: 30, left: 30, bottom: 30 }}
           >
-            <XAxis dataKey='Date Sold' tick={{ dy: 5 }} />
-            <Tooltip /* labelFormatter={formatTooltip} */ />
+            <XAxis dataKey='Date Sold' tick={{ dy: 5 }} tickFormatter={formatXAxis} />
+            <Tooltip labelFormatter={formatTooltip} />
             {barChart
               ? <Bar dataKey='Items Sold' fill='#efb5ea' />
               : <Line dataKey='Items Sold' stroke='#efb5ea' strokeWidth={3} />}
@@ -53,5 +54,6 @@ const BarChartView = ({ state }) => {
 }
 
 export default BarChartView
-const formatXAxis = (tickItem) => { console.log('anyways sam. This date format is bad '); return moment(tickItem.replace('-', '/')).format('M/D') }
-const formatTooltip = (tickItem) => { console.log('anyways sam. This date format is bad '); return moment(tickItem.replace('-', '/')).format('MMM Do YYYY') }
+
+const formatXAxis = (tickItem) => { return moment(tickItem, 'MM/DD/YYYY').format('M/D') }
+const formatTooltip = (tickItem) => { return moment(tickItem, 'MM/DD/YYYY').format('MMM Do YYYY') }

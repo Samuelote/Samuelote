@@ -7,11 +7,9 @@
   margin: 2px 10px;
   width:100%;
   background: $secondary-bg-color;
-  max-width: 300px;
 }
 .container {
   @include cont;
-
 }
 .halfcontainer {
   @include cont;

@@ -12,6 +12,7 @@ const ReturningCustomers = ({ state }) => {
   }
   const tableData = groupByBuyer(state)
   if (!state.files) return null
+  if (!state.files[0]) return null
   return (
     <div className={container}>
 
@@ -30,14 +31,16 @@ const ReturningCustomers = ({ state }) => {
                   <div className={singleRow} key={i}>
                     {keys.map((key, i) => {
                       if (i === 1) {
-                        return (<a
-                          className={a}
-                          key={i}
-                          target='_blank'
-                          href={state.getUrl(row[0].buyer.toLowerCase())}
-                        >
-                          {row[0].buyer}
-                        </a>)
+                        return (
+                          <a
+                            className={a}
+                            key={i}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            href={state.getUrl(row[0].buyer.toLowerCase())}
+                          >
+                            {row[0].buyer}
+                          </a>)
                       } else {
                         return (
                           <div key={i} id='id'>

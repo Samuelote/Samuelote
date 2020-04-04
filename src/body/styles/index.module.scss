@@ -18,7 +18,16 @@
   margin-top: 20px;
 
 }
-
+.NoData {
+  @include label;
+  margin-top:50px;
+  font-size: 30px;
+  font-weight: 400;
+  text-transform: none;
+  text-align: center;
+  line-height: normal;
+  max-width: 800px;
+}
 .valueBoxes {
   display:flex;
   justify-content: space-evenly;

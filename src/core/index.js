@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
-import { mainContainer, subContainer } from '../styles/index.module.scss'
 
-// import Header from "../../header"
-import Body from '../../body'
+import Body from '../body'
 
 const Core = () => {
   const initialState = { data: {} }
   const [state, setState] = useState(initialState)
   const updateState = (newState) => setState({ ...state, ...newState })
   return (
-    <div className={mainContainer}>
+    <div>
       {/* <div className={subContainer}> */}
 
       {/* <Header state={state} setState={updateState} /> */}

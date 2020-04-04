@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { questionCircleO } from 'react-icons-kit/fa'
 import { Icon } from 'react-icons-kit'
 import { chevronDown, chevronUp } from 'react-icons-kit/ionicons'

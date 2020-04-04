@@ -8,8 +8,9 @@ import {
 import { filterData } from '../utils/dataSetup'
 
 const DateDisplay = ({ state, setState }) => {
-  const [startDate, setStartDate] = useState(new Date(state.data.files[0].date_of_sale))
-  const [endDate, setEndDate] = useState(new Date(state.data.files[state.data.files.length - 1].date_of_sale))
+  const files = state.data.files.length ? state.data.files : state.originalData.files
+  const [startDate, setStartDate] = useState(new Date(files[0].date_of_sale))
+  const [endDate, setEndDate] = useState(new Date(files[files.length - 1].date_of_sale))
   const [activeBtn, activateBtn] = useState(null)
   const setPreset = (type) => {
     activateBtn(type)
@@ -31,7 +32,7 @@ const DateDisplay = ({ state, setState }) => {
         break
       case 'full':
         setStartDate(new Date(state.originalData.files[0].date_of_sale))
-        setEndDate(new Date(state.data.files[state.data.files.length - 1].date_of_sale))
+        setEndDate(new Date(files[files.length - 1].date_of_sale))
         setState(
           { data: state.originalData }
         )
@@ -40,7 +41,7 @@ const DateDisplay = ({ state, setState }) => {
     }
   }
 
-  if (!state.data.files) return null
+  // if (!state.data.files) return null
   return (
     <div className={container}>
 

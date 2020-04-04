@@ -13,12 +13,14 @@ const RecentSales = ({ state }) => {
     item_price: 'Price'
   }
   if (!state.files) return null
+  if (!state.files[0]) return null
+
   const filesToReverse = [...state.files]
   return (
     <div className={container}>
       <div className={switchContainer}>
         <div className={label}>
-          Show Past {showRecent ? 'Week' : '7'} Sales
+          Show Past {showRecent ? 'Week' : '5'} Sales
         </div>
         <Switch
           checked={showRecent}
@@ -35,21 +37,27 @@ const RecentSales = ({ state }) => {
         <div>
           {
             filesToReverse.reverse().map((row, i) => {
-              const start = new Date().setDate(new Date().getDate() - 7)
-              const condition = showRecent ? i < 7 : new Date(row.date_of_sale) > new Date(start)
+              const start = new Date().setDate(new Date().getDate() - 5)
+              const condition =
+                showRecent
+                  ? i < 5
+                  : new Date(row.date_of_sale) > new Date(start)
+
               if (condition) {
                 return (
                   <div className={singleRow} key={i}>
                     {keys.map((key, i) => {
                       if (i === 1) {
-                        return (<a
-                          className={a}
-                          key={i}
-                          target='_blank'
-                          href={state.getUrl(row[key].toLowerCase())}
-                        >
-                          {row[key]}
-                        </a>)
+                        return (
+                          <a
+                            className={a}
+                            key={i}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            href={state.getUrl(row[key].toLowerCase())}
+                          >
+                            {row[key]}
+                          </a>)
                       } else return <div key={i}>{row[key]}</div>
                     })}
                   </div>

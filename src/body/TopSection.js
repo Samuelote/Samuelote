@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Files from 'react-files'
-import { processFiles } from './utils/dataSetup'
+import { processFiles, initState } from './utils/dataSetup'
 import DateDisplay from './components/DateDisplay'
 import BooleanSwitch from './components/BooleanSwitch'
-import { exampleFile } from '../assets/example_file.js'
+import { setUpExampleFile } from '../assets/example_file.js'
 
 import { subContainer, container, mainContainer } from './styles/topSection.module.scss'
 
@@ -12,13 +12,15 @@ const TopSection = ({ state, setState }) => {
   const [useExample, setUseExample] = useState(true)
   useEffect(() => {
     if (useExample) {
+      initState(setUpExampleFile(), (data) => setState({ data, originalData: data }))
+      // setState({ data: [], originalData: [] })
       // set up state from local string/file in assets folder
-      processFiles(
-        exampleFile,
-        (data) => setState({ data, originalData: data }),
-        () => alert('error occurred'),
-        useExample
-      )
+      // processFiles(
+      //   exampleFile,
+      //   (data) => setState({ data, originalData: data }),
+      //   () => alert('error occurred'),
+      //   useExample
+      // )
     }
   }, [useExample])
 
@@ -56,7 +58,7 @@ const TopSection = ({ state, setState }) => {
               clickable
               >
               Drop files here or click to upload
-            </Files> : null
+              </Files> : null
         }
 
         {

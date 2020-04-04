@@ -13,7 +13,7 @@ export const filterData = (data, { start, end }) => {
       filteredData.push(file)
     }
   })
-  return setUpState(filteredData)
+  return setUpState(filteredData, data.currency_type)
 }
 // Reads files in
 export const processFiles = (files, setState, err, useExample) => {
@@ -54,12 +54,14 @@ const readCSVString = (file, results, err) => {
 }
 
 // Initialized data format that we'll throw into our app's state
-const initState = (originalFiles, setState) => {
+export const initState = (originalFiles, setState) => {
   const files = cleanAndSort(originalFiles)
-  setState(setUpState(files))
+  const sorted = sort(files)
+  setState(setUpState(sorted))
 }
-const setUpState = (files) => {
+const setUpState = (files, currencyType) => {
   const data = {}
+
   data.files = files
   data.total_earnings = 0
   data.total_shipping_cost = 0
@@ -68,14 +70,14 @@ const setUpState = (files) => {
   data.avg_shipping = 0
   data.avg_total = 0
   data.avg_time_listed = 0
-  data.currency_type = files[0].item_price[0]
+  data.currency_type = currencyType || files[0].item_price[0]
   files.forEach((file) => {
     const miliSeconds = new Date(file.date_of_sale).getTime() - new Date(file.date_of_listing).getTime()
     data.avg_price += currency(file.item_price).value
     data.avg_shipping += currency(file.buyer_shipping_cost).value
     data.avg_total += currency(file.total).value
     data.total_earnings += currency(file.total).value
-    data.total_shipping_cost += currency(file.buyer_shipping_cost).value
+    data.total_shipping_cost += currency(file.buyer_shipping_cost).value + currency(file.usps_cost).value
     data.total_fees_paid +=
       parseFloat(currency(file.depop_fee).value) +
       parseFloat(currency(file.depop_payments_fee).value)
@@ -121,10 +123,14 @@ const cleanAndSort = (originalFiles) => {
       newFiles.push(item)
     }
   })
+  return newFiles
+}
+
+const sort = (sales) => {
   // Sorts by date
-  const sorted = newFiles.sort((a, b) => {
+  const sorted = sales.sort((a, b) => {
     const fullDateA = new Date(`${a.date_of_sale} ${a.time_of_sale}`)
-    const fullDateB = new Date(`${b.dbte_of_sale} ${b.time_of_sale}`)
+    const fullDateB = new Date(`${b.date_of_sale} ${b.time_of_sale}`)
     return fullDateA - fullDateB
   })
   return sorted
