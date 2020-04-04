@@ -5,9 +5,9 @@ export const groupByDay = (data, key) => {
     Sun: 0, Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0
   }
   const newData = []
-  if (data.files) {
+  if (data.sales) {
     // groups data
-    data.files.forEach((file) => {
+    data.sales.forEach((file) => {
       const day = moment(file.date_of_sale, 'MM/DD/YYYY').format('ddd')
       groupedData[day]++
     })
@@ -23,9 +23,9 @@ export const groupByDay = (data, key) => {
 export const groupByTime = (data) => {
   const groupedData = {}
   const newData = []
-  if (data.files) {
+  if (data.sales) {
     // groups data
-    data.files.forEach((file) => {
+    data.sales.forEach((file) => {
       const hour = moment(file.time_of_sale, 'hh:mm A').format('h a')
       if (groupedData[hour]) {
         groupedData[hour]++
@@ -57,9 +57,9 @@ export const groupByTime = (data) => {
 export const groupByBuyer = (data) => {
   const groupedData = {}
   const newData = []
-  if (data.files) {
+  if (data.sales) {
     // groups data
-    data.files.forEach((file) => {
+    data.sales.forEach((file) => {
       if (groupedData[file.buyer]) {
         const dateExists = groupedData[file.buyer].find(
           e => e.date_of_sale === file.date_of_sale
@@ -83,8 +83,8 @@ export const groupByBuyer = (data) => {
 
 export const groupByDate = (key, data, showEmptyDates) => {
   const newData = []
-  if (data.files) {
-    data.files.forEach(({ date_of_sale }) => {
+  if (data.sales) {
+    data.sales.forEach(({ date_of_sale }) => {
       const latest = newData[newData.length - 1]
       if (!newData.length || latest['Date Sold'] !== date_of_sale) {
         if (latest && showEmptyDates) {

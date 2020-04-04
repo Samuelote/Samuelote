@@ -5,7 +5,7 @@ import moment from 'moment'
 
 export const filterData = (data, { start, end }) => {
   const filteredData = []
-  data.files.forEach((file) => {
+  data.sales.forEach((file) => {
     if (
       new Date(file.date_of_sale) >= start &&
       new Date(file.date_of_sale) <= end
@@ -62,7 +62,7 @@ export const initState = (originalFiles, setState) => {
 const setUpState = (files, currencyType) => {
   const data = {}
 
-  data.files = files
+  data.sales = files
   data.total_earnings = 0
   data.total_shipping_cost = 0
   data.total_fees_paid = 0

@@ -21,7 +21,7 @@ const Body = ({ state, setState }) => {
   const {
     currency_type, total_earnings,
     avg_price, avg_total, avg_shipping, total_shipping_cost,
-    avg_time_listed, files, total_fees_paid
+    avg_time_listed, sales, total_fees_paid
   } = state.data
   return (
     <div className={container}>
@@ -31,11 +31,11 @@ const Body = ({ state, setState }) => {
         <TopSection state={state} setState={setState} />
 
         {
-          state.data.files
+          state.data.sales
             ? (
               <>
                 {
-                  state.data.files[0]
+                  state.data.sales[0]
                     ? (
                       <>
                         <div className={switchContainer}>
@@ -87,7 +87,7 @@ const Body = ({ state, setState }) => {
                           <ValueBox
                             animate={showMore === null}
                             title='Items Sold'
-                            value={files ? files.length : null}
+                            value={sales ? sales.length : null}
                           />
                           <ValueBox
                             animate={showMore === null}
@@ -144,5 +144,5 @@ const Body = ({ state, setState }) => {
 
 const NoneFound = ({ msg }) => (<div className={NoData}>
   {msg || 'No data found. Either change the date selection or upload another file.'}
-                                </div>)
+</div>)
 export default Body

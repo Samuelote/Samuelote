@@ -6,11 +6,11 @@ import { processFiles } from '../utils/dataSetup'
 import {
   container, modal, dropzone, activeDropzone,
   btn, file, heading, btnDisabled, closeX
-} from '../styles/modal.module.scss'
+} from '../styles/fileModal.module.scss'
 
 Modal.setAppElement('#root')
 
-const FileModal = ({ open, closeModal, setState }) => {
+const FileModal = ({ open, closeModal, setState, saveAndClose }) => {
   const [files, updateFiles] = useState([])
   useEffect(() => {
     updateFiles([])
@@ -19,7 +19,14 @@ const FileModal = ({ open, closeModal, setState }) => {
     const newList = listOfFiles
     processFiles(
       newList,
-      (data) => setState({ data, originalData: data }),
+      (data) => setState(
+        {
+          data,
+          originalData: data,
+          warning: null,
+          example: false
+        }
+      ),
       () => alert('error occurred')
 
     )
@@ -56,9 +63,9 @@ const FileModal = ({ open, closeModal, setState }) => {
           className={!files.length ? btnDisabled : btn}
           onClick={
             () => {
-              closeModal()
+              saveAndClose()
               updateFileHandler(files)
-            }
+          }
           }
         >
           Generate Report

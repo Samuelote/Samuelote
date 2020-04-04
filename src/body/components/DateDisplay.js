@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import DatePicker from 'react-datepicker'
+import moment from 'moment'
+
 import 'react-datepicker/dist/react-datepicker.css'
 import {
   datePicker, inputs, label, inputContainer,
@@ -8,15 +10,32 @@ import {
 import { filterData } from '../utils/dataSetup'
 
 const DateDisplay = ({ state, setState }) => {
-  const files = state.data.files.length ? state.data.files : state.originalData.files
-  const [startDate, setStartDate] = useState(new Date(files[0].date_of_sale))
-  const [endDate, setEndDate] = useState(new Date(files[files.length - 1].date_of_sale))
+  const sales = state.data.sales.length ? state.data.sales : state.originalData.sales
+  const [startDate, setStartDate] = useState(new Date(sales[0].date_of_sale))
+  const [endDate, setEndDate] = useState(new Date(sales[sales.length - 1].date_of_sale))
   const [activeBtn, activateBtn] = useState(null)
 
+  // Sets global warning if current day isn't included in sales
+  const originalDataEndDate =
+    new Date(
+      state.originalData.sales[state.originalData.sales.length - 1].date_of_sale
+    )
+  if (
+    moment().diff(originalDataEndDate, 'days') > 0 &&
+    state.warning === null &&
+    !state.example
+  ) {
+    setState(
+      {
+        warning: `Your latest date of record is ${moment(originalDataEndDate).format('MMMM Do YYYY')}. 
+      If any sales have occurred between ${moment(originalDataEndDate).format('MMMM Do YYYY')} and now, 
+      those sales will not be accounted for in this report.`
+      })
+  }
   useEffect(() => {
-    setStartDate(new Date(files[0].date_of_sale))
-    setEndDate(new Date(files[files.length - 1].date_of_sale))
-  }, [files])
+    setStartDate(new Date(sales[0].date_of_sale))
+    setEndDate(new Date(sales[sales.length - 1].date_of_sale))
+  }, [sales])
   const setPreset = (type) => {
     activateBtn(type)
     switch (type) {
@@ -36,8 +55,8 @@ const DateDisplay = ({ state, setState }) => {
         )
         break
       case 'full':
-        setStartDate(new Date(state.originalData.files[0].date_of_sale))
-        setEndDate(new Date(files[files.length - 1].date_of_sale))
+        setStartDate(new Date(state.originalData.sales[0].date_of_sale))
+        setEndDate(new Date(sales[sales.length - 1].date_of_sale))
         setState(
           { data: state.originalData }
         )
@@ -68,8 +87,8 @@ const DateDisplay = ({ state, setState }) => {
                 { data: filterData(state.originalData, { start, end }) }
               )
             }}
-            minDate={new Date(state.originalData.files[0].date_of_sale)}
-            maxDate={new Date(state.originalData.files[state.originalData.files.length - 1].date_of_sale)}
+            minDate={new Date(state.originalData.sales[0].date_of_sale)}
+            maxDate={new Date(state.originalData.sales[state.originalData.sales.length - 1].date_of_sale)}
             placeholderText='start date'
             popperModifiers={popperModifier}
           />
@@ -94,8 +113,8 @@ const DateDisplay = ({ state, setState }) => {
                 { data: filterData(state.originalData, { start, end }) }
               )
             }}
-            minDate={new Date(state.originalData.files[0].date_of_sale)}
-            maxDate={new Date(state.originalData.files[state.originalData.files.length - 1].date_of_sale)}
+            minDate={new Date(state.originalData.sales[0].date_of_sale)}
+            maxDate={new Date(state.originalData.sales[state.originalData.sales.length - 1].date_of_sale)}
 
             placeholderText='end date'
             popperModifiers={popperModifier}

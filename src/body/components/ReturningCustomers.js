@@ -11,14 +11,14 @@ const ReturningCustomers = ({ state }) => {
     item_price: 'Item Prices'
   }
   const tableData = groupByBuyer(state)
-  if (!state.files) return null
-  if (!state.files[0]) return null
+  if (!state.sales) return null
+  if (!state.sales[0]) return null
   return (
     <div className={container}>
 
       <div className={tableContainer}>
         <div className={headerRow}>
-          {Object.keys(state.files[0]).map((key) => {
+          {Object.keys(state.sales[0]).map((key) => {
             if (!keys.includes(key)) return null
             return <div key={key}>{labels[key]}</div>
           })}

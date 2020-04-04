@@ -11,15 +11,26 @@ const TopSection = ({ state, setState }) => {
   const [modalIsOpen, openModal] = useState(false)
   const [useExample, setUseExample] = useState(true)
   useEffect(() => {
-    if (useExample) initState(setUpExampleFile(), (data) => setState({ data, originalData: data })) // set up state from local string/file in assets folder
+    if (useExample) {
+      initState(
+        setUpExampleFile(),
+        (data) => setState({ data, example: true, warning: '', originalData: data })
+      ) // set up state from local string/file in assets folder
+    }
   }, [useExample])
 
   return (
     <div className={container}>
       <FileModal
-        closeModal={() => openModal(!modalIsOpen)}
+        closeModal={() => {
+          openModal(!modalIsOpen)
+          if (state.example) {
+            setUseExample(true)
+          }
+        }}
         open={modalIsOpen}
         setState={setState}
+        saveAndClose={() => openModal(!modalIsOpen)}
       />
       <div className={subContainer}>
         <ButtonSwitch
@@ -35,10 +46,10 @@ const TopSection = ({ state, setState }) => {
         />
 
         {
-          state.data.files
+          state.data.sales
             ? <div className={mainContainer}>
               <DateDisplay state={state} setState={setState} />
-              </div>
+            </div>
             : null
         }
       </div>

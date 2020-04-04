@@ -12,10 +12,10 @@ const RecentSales = ({ state }) => {
     buyer: 'Buyer',
     item_price: 'Price'
   }
-  if (!state.files) return null
-  if (!state.files[0]) return null
+  if (!state.sales) return null
+  if (!state.sales[0]) return null
 
-  const filesToReverse = [...state.files]
+  const salesToReverse = [...state.sales]
   return (
     <div className={container}>
       <div className={switchContainer}>
@@ -29,14 +29,14 @@ const RecentSales = ({ state }) => {
       </div>
       <div className={tableContainer}>
         <div className={headerRow}>
-          {Object.keys(state.files[0]).map((key) => {
+          {Object.keys(state.sales[0]).map((key) => {
             if (!keys.includes(key)) return null
             return <div key={key}>{labels[key]}</div>
           })}
         </div>
         <div>
           {
-            filesToReverse.reverse().map((row, i) => {
+            salesToReverse.reverse().map((row, i) => {
               const start = new Date().setDate(new Date().getDate() - 5)
               const condition =
                 showRecent
