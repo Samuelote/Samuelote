@@ -104,7 +104,7 @@ const FileModal = ({ open, closeModal, setState, saveAndClose }) => {
             () => {
               saveAndClose()
               updateFileHandler(files)
-          }
+            }
           }
         >
           Generate Report
