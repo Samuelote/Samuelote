@@ -40,7 +40,7 @@ const TopSection = ({ state, setState }) => {
             setUseExample(false)
             openModal(true)
           }}
-          title1='Generate Example File'
+          title1='Generate Example'
           title2='Upload File'
           big
         />
@@ -49,7 +49,7 @@ const TopSection = ({ state, setState }) => {
           state.data.sales
             ? <div className={mainContainer}>
               <DateDisplay state={state} setState={setState} />
-            </div>
+              </div>
             : null
         }
       </div>

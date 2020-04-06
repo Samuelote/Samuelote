@@ -2,7 +2,6 @@
 import { readString } from 'react-papaparse'
 import currency from 'currency.js'
 import moment from 'moment'
-import { headers } from '../../assets/example_buyers'
 export const filterData = (data, { start, end }) => {
   const filteredData = []
   data.sales.forEach((file) => {
@@ -23,7 +22,7 @@ export const processFiles = (files, setState, err, useExample) => {
   if (useExample) {
     readCSVString(
       files,
-      (res) => results = [...results, ...res],
+      (res) => { results = [...results, ...res] },
       err
     )
     initState(results, setState, err)
@@ -34,7 +33,7 @@ export const processFiles = (files, setState, err, useExample) => {
       fileReader.onloadend = () => {
         readCSVString(
           fileReader.result,
-          (res) => results = [...results, ...res],
+          (res) => { results = [...results, ...res] },
           err
         )
         if (i === files.length - 1) {
@@ -146,22 +145,4 @@ const sort = (sales) => {
     return fullDateA - fullDateB
   })
   return sorted
-}
-
-const validateRow = (row) => {
-  if (JSON.stringify(row) === JSON.stringify(headers)) {
-    return true
-  }
-  let bool = true
-  if (row.length !== 22) bool = false
-
-  // checks for date
-  if (Object.prototype.toString.call(new Date(row[0])) === '[object Date]') {
-    // it is a date
-    if (isNaN(new Date(row[0]).getTime())) {
-      bool = false
-    }
-  } else bool = false
-
-  return bool
 }

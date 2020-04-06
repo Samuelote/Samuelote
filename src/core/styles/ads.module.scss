@@ -1,9 +1,10 @@
 @mixin cont {
   position: fixed;
   right: 0px;
-  bottom: 30px;
+  bottom: 90px;
   min-height: 80px;
   width: 350px;
+  max-width: 95%;
   background: white;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
