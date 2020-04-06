@@ -10,8 +10,8 @@
   // border: 1px solid $border-primary;
 }
 .container {
-  max-height: 450px;
-    overflow: auto;
+  height: 450px;
+  overflow: auto;
 }
 .a {
   color:black;
@@ -37,5 +37,12 @@
   margin: 0px 10px;
   padding:5px 0px 15px 0px;
   border-top: none;
-
+}
+.NoResults {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  color: $text-subtle;
+  height:150px;
 }

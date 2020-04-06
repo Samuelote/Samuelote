@@ -22,7 +22,7 @@
 
 .modal {
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
   right: auto;
   bottom: auto;
@@ -36,6 +36,8 @@
   transform: translate(-50%, -50%);
   max-width: 100%;
   min-width: 350px;
+  overflow: auto;
+    max-height: 800px;
 }
 
 .dropzone {
@@ -89,8 +91,27 @@
   letter-spacing: 2px;
 }
 
-//Gif stuff
 
+//Gif stuff
+.iconContainer{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  cursor:pointer;
+  
+}
+.removeBtn {
+  margin-top: 10px;
+    border: 1px solid $primary-bg-color;
+    background: none;
+    padding: 5px;
+    cursor: pointer;
+    width:100%;
+}
+.removeBtn:hover {
+  border-color: red;
+
+}
 .gifSubContainer {
   display:flex;
   color: $charcoal;
@@ -110,6 +131,7 @@
 }
 
 .ol > li {
+  margin-top:3px;
   color: $charcoal;
 }
 .ol > li > a {

@@ -54,3 +54,17 @@
   border-color: $secondary-bg-color;
   letter-spacing: 3px;
 }
+
+@media  only screen and (max-width: 700px){
+  .logo {
+    display: none;
+  }
+  .navBtn {
+    min-width: 10px;
+    margin-right: 10px;
+  }
+  .navigation {
+    position: static;
+    justify-content: space-evenly;;
+  }
+}
