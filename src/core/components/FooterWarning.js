@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { container, closeX, textContainer } from '../styles/footerWarning.module.scss'
 

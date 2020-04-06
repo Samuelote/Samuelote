@@ -5,7 +5,8 @@ import {
   Route
 } from 'react-router-dom'
 
-import FooterWarning from '../../mainApp/components/FooterWarning'
+import FooterWarning from '../components/FooterWarning'
+import ShipStationAd from '../components/ShipStationAd'
 import Header from './Header'
 import About from './About'
 import MainApp from '../../mainApp'
@@ -13,10 +14,14 @@ import MainApp from '../../mainApp'
 const Core = () => {
   const initialState = { data: {}, warning: null }
   const [state, setState] = useState(initialState)
+  const [adShown, showAd] = useState(true)
   const updateState = (newState) => setState({ ...state, ...newState })
   return (
     <Router>
       <Header />
+      {
+        adShown ? <ShipStationAd /> : null
+      }
       <Switch>
         <Route path='/about'>
           <About />

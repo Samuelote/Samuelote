@@ -2,7 +2,7 @@
 import { readString } from 'react-papaparse'
 import currency from 'currency.js'
 import moment from 'moment'
-
+import { headers } from '../../assets/example_buyers'
 export const filterData = (data, { start, end }) => {
   const filteredData = []
   data.sales.forEach((file) => {
@@ -26,7 +26,7 @@ export const processFiles = (files, setState, err, useExample) => {
       (res) => results = [...results, ...res],
       err
     )
-    initState(results, setState)
+    initState(results, setState, err)
   } else {
     files.forEach((file, i) => {
       const fileReader = new FileReader()
@@ -38,7 +38,7 @@ export const processFiles = (files, setState, err, useExample) => {
           err
         )
         if (i === files.length - 1) {
-          initState(results, setState)
+          initState(results, setState, err)
         }
       }
     })
@@ -54,14 +54,26 @@ const readCSVString = (file, results, err) => {
 }
 
 // Initialized data format that we'll throw into our app's state
-export const initState = (originalFiles, setState) => {
-  const files = cleanAndSort(originalFiles)
+export const initState = (originalFiles, setState, err) => {
+  const cleanedFiles = [...originalFiles]
+  for (let i = 0; i < cleanedFiles.length; i++) {
+    const row = cleanedFiles[i]
+    if (row.length !== 22) {
+      cleanedFiles.splice(i, 1)
+      i--
+    }
+  }
+  if (!cleanedFiles.length) {
+    alert("Oops! We don't recognize this file format. Try another file!")
+    err()
+    return
+  }
+  const files = cleanAndSort(cleanedFiles)
   const sorted = sort(files)
   setState(setUpState(sorted))
 }
 const setUpState = (files, currencyType) => {
   const data = {}
-
   data.sales = files
   data.total_earnings = 0
   data.total_shipping_cost = 0
@@ -134,4 +146,22 @@ const sort = (sales) => {
     return fullDateA - fullDateB
   })
   return sorted
+}
+
+const validateRow = (row) => {
+  if (JSON.stringify(row) === JSON.stringify(headers)) {
+    return true
+  }
+  let bool = true
+  if (row.length !== 22) bool = false
+
+  // checks for date
+  if (Object.prototype.toString.call(new Date(row[0])) === '[object Date]') {
+    // it is a date
+    if (isNaN(new Date(row[0]).getTime())) {
+      bool = false
+    }
+  } else bool = false
+
+  return bool
 }

@@ -9,7 +9,7 @@ import getFileGif from '../../assets/get_file_example.gif'
 import {
   container, modal, dropzone, activeDropzone,
   btn, file, heading, btnDisabled, closeX, gif,
-  gifText, gifSubContainer, ol
+  gifText, gifSubContainer, ol, removeBtn
 } from '../styles/fileModal.module.scss'
 
 Modal.setAppElement('#root')
@@ -17,25 +17,28 @@ Modal.setAppElement('#root')
 const FileModal = ({ open, closeModal, setState, saveAndClose }) => {
   const [files, updateFiles] = useState([])
   const [gifIsActive, openGif] = useState(false)
-
   useEffect(() => {
     updateFiles([])
   }, [])
-  const updateFileHandler = (listOfFiles) => {
+  const updateFileHandler = (listOfFiles, onSuccess) => {
     const newList = listOfFiles
+    const error = false
     processFiles(
       newList,
-      (data) => setState(
-        {
-          data,
-          originalData: data,
-          warning: null,
-          example: false
-        }
-      ),
-      () => alert('error occurred')
-
+      (data) => {
+        if (onSuccess) onSuccess()
+        setState(
+          {
+            data,
+            originalData: data,
+            warning: null,
+            example: false
+          }
+        )
+      },
+      () => updateFiles([])
     )
+    return error
   }
   return (
     <div className={container}>
@@ -81,19 +84,33 @@ const FileModal = ({ open, closeModal, setState, saveAndClose }) => {
               : null
           }
         </div>
-        <Files
-          className={dropzone}
-          dropActiveClassName={activeDropzone}
-          onChange={newList => updateFiles(newList)}
-          // onError={this.onFilesError}
-          accepts={['.csv']}
-          multiple
-          maxFileSize={10000000}
-          minFileSize={0}
-          clickable
-        >
-          Drop files here or click to upload
-        </Files>
+
+        {
+          !files.length
+            ? (
+              <Files
+                className={dropzone}
+                dropActiveClassName={activeDropzone}
+                onChange={newList => updateFiles(newList)}
+                onError={err => alert(err.message)}
+                accepts={['.csv']}
+                multiple
+                maxFileSize={10000000}
+                minFileSize={0}
+                clickable
+              >
+                Drop files here or click to upload
+              </Files>
+            )
+            : (
+              <button
+                onClick={() => updateFiles([])}
+                className={removeBtn}
+              >
+                Remove {files.length === 1 ? 'File' : 'Files'} and upload others
+              </button>
+            )
+        }
         {
           files.map(({ name }, i) => <div className={file} key={i}>{i + 1}. {name}</div>)
         }
@@ -101,10 +118,7 @@ const FileModal = ({ open, closeModal, setState, saveAndClose }) => {
           disabled={!files.length}
           className={!files.length ? btnDisabled : btn}
           onClick={
-            () => {
-              saveAndClose()
-              updateFileHandler(files)
-            }
+            () => updateFileHandler(files, saveAndClose)
           }
         >
           Generate Report

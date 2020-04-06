@@ -16,7 +16,6 @@ import Accordian from './components/Accordian'
 import TopSection from './TopSection'
 
 const Body = ({ state, setState }) => {
-  console.log(state)
   const [showMore, setShowMore] = useState(null)
   const {
     currency_type, total_earnings,
@@ -143,5 +142,5 @@ const Body = ({ state, setState }) => {
 
 const NoneFound = ({ msg }) => (<div className={NoData}>
   {msg || 'No data found. Either change the date selection or upload another file.'}
-                                </div>)
+</div>)
 export default Body

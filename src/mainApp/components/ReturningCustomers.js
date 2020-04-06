@@ -1,6 +1,9 @@
 import React from 'react'
 
-import { singleRow, headerRow, tableContainer, a, container } from '../styles/table.module.scss'
+import {
+  singleRow, headerRow,
+  tableContainer, a, container, NoResults
+} from '../styles/table.module.scss'
 import { groupByBuyer } from '../utils/dataGrouping'
 
 const ReturningCustomers = ({ state }) => {
@@ -13,7 +16,10 @@ const ReturningCustomers = ({ state }) => {
   const tableData = groupByBuyer(state)
   if (!state.sales) return null
   if (!state.sales[0]) return null
+  if (!tableData.length) return <div className={NoResults}>No Recent Sales Found</div>
+
   return (
+
     <div className={container}>
 
       <div className={tableContainer}>
@@ -26,36 +32,34 @@ const ReturningCustomers = ({ state }) => {
         <div>
           {
             tableData.map((row, i) => {
-              if (true) {
-                return (
-                  <div className={singleRow} key={i}>
-                    {keys.map((key, i) => {
-                      if (i === 1) {
-                        return (
-                          <a
-                            className={a}
-                            key={i}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            href={state.getUrl(row[0].buyer.toLowerCase())}
-                          >
-                            {row[0].buyer}
-                          </a>)
-                      } else {
-                        return (
-                          <div key={i} id='id'>
-                            {
-                              row.map((sale, i) => {
-                                return <div key={i}>{sale[key]}</div>
-                              })
-                            }
-                          </div>
-                        )
-                      }
-                    })}
-                  </div>
-                )
-              } else return null
+              return (
+                <div className={singleRow} key={i}>
+                  {keys.map((key, i) => {
+                    if (i === 1) {
+                      return (
+                        <a
+                          className={a}
+                          key={i}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          href={state.getUrl(row[0].buyer.toLowerCase())}
+                        >
+                          {row[0].buyer}
+                        </a>)
+                    } else {
+                      return (
+                        <div key={i} id='id'>
+                          {
+                            row.map((sale, i) => {
+                              return <div key={i}>{sale[key]}</div>
+                            })
+                          }
+                        </div>
+                      )
+                    }
+                  })}
+                </div>
+              )
             })
           }
         </div>

@@ -7,13 +7,13 @@ export const setUpExampleFile = () => {
   function randomDate (start, end) {
     return moment(new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime())))
   }
-  const num = Math.floor(Math.random() * (120 - 90) + 90)
-  for (let i = 0; i < num; i++) {
+  const numOfSales = Math.floor(Math.random() * (120 - 85) + 85)
+  for (let i = 0; i < numOfSales; i++) {
     const dateSold = randomDate(new Date(2020, 0, 1), new Date())
     const timeSold = randomDate(new Date(2020, 0, 1), new Date()).format('h:mm A')
     const dateListed = randomDate(new Date(2020, 0, 1), new Date(dateSold.format('MM-DD-YYYY'))).format('DD-MM-YYYY')
 
-    const price = Math.floor(Math.random() * (100 - 30) + 30).toFixed(2)
+    const price = Math.floor(Math.random() * (110 - 25) + 25).toFixed(2)
     const shipping = Math.floor(Math.random() * 10).toFixed(2)
     const usps = Math.floor(Math.random() * (10 - 1) + 1).toFixed(2)
     mockFile.push([

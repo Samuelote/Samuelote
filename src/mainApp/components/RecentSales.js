@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 import Switch from 'react-ios-switch'
 
-import { singleRow, headerRow, tableContainer, a, container } from '../styles/table.module.scss'
+import {
+  singleRow, headerRow, tableContainer,
+  a, container, NoResults
+} from '../styles/table.module.scss'
 import { switchContainer, label } from '../styles/salesByTime.module.scss'
 
 const RecentSales = ({ state }) => {
   const [showRecent, toggleRecent] = useState(false)
+  const [thereAreRows, setRowsBool] = useState(false)
   const keys = ['date_of_sale', 'buyer', 'item_price']
   const labels = {
     date_of_sale: 'Date Sold',
@@ -15,8 +19,18 @@ const RecentSales = ({ state }) => {
   if (!state.sales) return null
   if (!state.sales[0]) return null
 
-  const salesToReverse = [...state.sales]
+  const sales = [...state.sales].filter(sale => {
+    const start = new Date().setDate(new Date().getDate() - 5)
+    const condition = showRecent
+      ? true
+      : new Date(sale.date_of_sale) > new Date(start)
+
+    return condition
+  }).reverse()
+
+  if (!sales.length) return <div className={NoResults}>No Recent Sales Found</div>
   return (
+
     <div className={container}>
       <div className={switchContainer}>
         <div className={label}>
@@ -36,39 +50,34 @@ const RecentSales = ({ state }) => {
         </div>
         <div>
           {
-            salesToReverse.reverse().map((row, i) => {
-              const start = new Date().setDate(new Date().getDate() - 5)
-              const condition =
-                showRecent
-                  ? i < 5
-                  : new Date(row.date_of_sale) > new Date(start)
-
-              if (condition) {
-                return (
-                  <div className={singleRow} key={i}>
-                    {keys.map((key, i) => {
-                      if (i === 1) {
-                        return (
-                          <a
-                            className={a}
-                            key={i}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            href={state.getUrl(row[key].toLowerCase())}
-                          >
-                            {row[key]}
-                          </a>)
-                      } else return <div key={i}>{row[key]}</div>
-                    })}
-                  </div>
-                )
-              } else return null
+            sales.map((row, i) => {
+              if (i > 4 && showRecent) return null
+              return (
+                <div className={singleRow} key={i}>
+                  {keys.map((key, i) => {
+                    if (i === 1) {
+                      return (
+                        <a
+                          className={a}
+                          key={i}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          href={state.getUrl(row[key].toLowerCase())}
+                        >
+                          {row[key]}
+                        </a>)
+                    } else return <div key={i}>{row[key]}</div>
+                  })}
+                </div>
+              )
             })
           }
+
         </div>
       </div>
-
     </div>
+    // )
+
   )
 }
 
