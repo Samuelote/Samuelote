@@ -9,7 +9,6 @@ import { switchContainer, label } from '../styles/salesByTime.module.scss'
 
 const RecentSales = ({ state }) => {
   const [showRecent, toggleRecent] = useState(false)
-  const [thereAreRows, setRowsBool] = useState(false)
   const keys = ['date_of_sale', 'buyer', 'item_price']
   const labels = {
     date_of_sale: 'Date Sold',

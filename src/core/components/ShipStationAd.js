@@ -12,7 +12,7 @@ const ShipStationAd = () => {
         <Icon size={30} icon={isOpen ? closeRound : chevronLeft} />
       </div>
       <div className={title}>
-        <img src={Logo} width='180px' />
+        <img src={Logo} width='180px' alt='Ship Station Logo' />
       </div>
       <div className={body}>
         <h3 className={subText1}>The fastest, easiest way to get products to your customers.</h3>

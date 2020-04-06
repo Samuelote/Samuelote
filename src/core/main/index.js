@@ -14,14 +14,10 @@ import MainApp from '../../mainApp'
 const Core = () => {
   const initialState = { data: {}, warning: null }
   const [state, setState] = useState(initialState)
-  const [adShown, showAd] = useState(true)
   const updateState = (newState) => setState({ ...state, ...newState })
   return (
     <Router>
       <Header />
-      {
-        adShown ? <ShipStationAd /> : null
-      }
       <Switch>
         <Route path='/about'>
           <About />
@@ -29,6 +25,7 @@ const Core = () => {
 
         <Route path='/'>
           <MainApp state={state} setState={updateState} />
+          <ShipStationAd />
           {
             state.warning
               ? (<FooterWarning msg={state.warning} close={() => updateState({ warning: '' })} />)
