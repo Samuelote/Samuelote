@@ -29,7 +29,7 @@
   border: 2px solid $highlight-color;
   background: $secondary-bg-color;
   overflow: auto;
-  border-radius: 4px;
+  border-radius: $border-radius;
   outline: none;
   padding: 20px;
   margin-right: -50%;

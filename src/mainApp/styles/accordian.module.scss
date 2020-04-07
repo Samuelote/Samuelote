@@ -1,4 +1,7 @@
 @import '../../colors.module.scss';
+@import '../../global.module.scss';
+
+
 @mixin Header {
   background-color: $secondary-bg-color;
   padding:5px;
@@ -19,15 +22,21 @@
 }
 
 .container {
-  margin:10px;
+  margin:15px;
   flex: 1;
+  border-radius: $border-radius;
+
 }
 .borderHeader {
   @include Header;
   border-bottom: 1px solid $border-primary;
 }
 .header{
-  @include Header
+  @include Header;
+  border-radius: $border-radius;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+
 }
 .arrowIcon{
   margin-right: 20px;
@@ -35,9 +44,9 @@
 }
 .body{
   background-color: $secondary-bg-color;
-  // opacity: 1;
+  box-shadow: $box-shadow;
   width: 100%;
-  // animation: fadeIn 5s;
-  // animation-iteration-count: 1;
-  // animation-fill-mode: forwards;
+  border-radius: $border-radius;
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
 }
