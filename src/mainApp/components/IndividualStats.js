@@ -3,7 +3,7 @@ import ValueBox from './ValueBox'
 
 import { container } from '../styles/individualStats.module.scss'
 
-const Stats = ({ values }) => {
+const Stats = ({ values, currency }) => {
   return (
 
     <div className={container}>
@@ -15,6 +15,8 @@ const Stats = ({ values }) => {
               // halfSize
               title={label}
               value={label === 'Average Item Price' ? parseFloat(value) : value || 0}
+              float={label === 'Average Item Price'}
+              currencyType={label === 'Average Item Price' ? currency : null}
               trueCase
               animate
             />

@@ -62,6 +62,7 @@ const Body = ({ state, setState }) => {
 
                           </div>
                           <IndividualStats
+                            currency={currency_type}
                             values={[
                               { label: 'Items Sold', value: sales ? sales.length : null },
                               { label: 'Average Item Price', value: avg_price },
@@ -120,5 +121,5 @@ const Body = ({ state, setState }) => {
 
 const NoneFound = ({ msg }) => (<div className={NoData}>
   {msg || 'No data found. Either change the date selection or upload another file.'}
-</div>)
+                                </div>)
 export default Body
