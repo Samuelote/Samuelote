@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import ValueBox from './ValueBox'
 import Switch from 'react-ios-switch'
 import {
-  BarChart, Bar, XAxis, Tooltip, ResponsiveContainer
+  LineChart, Line, XAxis, Tooltip, ResponsiveContainer
 } from 'recharts'
 import { groupByTime } from '../utils/dataGrouping'
 import BooleanSwitch from './BooleanSwitch'
-import { chartFill } from '../../colors.module.scss'
+import { chartSecondary } from '../../colors.module.scss'
 
 import { subContainer, switchContainer, label } from '../styles/salesByTime.module.scss'
 
@@ -18,7 +18,7 @@ const SalesByDay = ({ state }) => {
     <div>
       <BooleanSwitch
         title1='Table'
-        title2='Bar Chart'
+        title2='View Chart'
         event={() => setView(!viewTable)}
         bool={viewTable}
       />
@@ -42,15 +42,15 @@ const SalesByDay = ({ state }) => {
                 title={timeFormat ? twentyFour : twelve}
                 value={sales || 0}
                 trueCase
-              />
+                     />
             })
             : <ResponsiveContainer width='100%' height='100%'>
-              <BarChart data={data}>
+              <LineChart data={data}>
                 <XAxis dataKey={timeFormat ? 'twentyFour' : 'twelve'} />
                 <Tooltip />
-                <Bar dataKey='sales' fill={chartFill} />
-              </BarChart>
-            </ResponsiveContainer>
+                <Line dataKey='sales' stroke={chartSecondary} strokeWidth={2} />
+              </LineChart>
+              </ResponsiveContainer>
         }
       </div>
     </div>

@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
+import Switch from 'react-ios-switch'
+import moment from 'moment'
 import {
   ComposedChart, Bar, Line, ResponsiveContainer,
   XAxis, Tooltip
 } from 'recharts'
-import Switch from 'react-ios-switch'
 
+import { chartContainer, switchContainer, label } from '../styles/switch.module.scss'
 import { chartFill } from '../../colors.module.scss'
 import { groupByDate } from '../utils/dataGrouping'
-import { chartContainer, switchContainer, label } from '../styles/salesByDate.module.scss'
-import moment from 'moment'
 import BooleanSwitch from './BooleanSwitch'
 
 const BarChartView = ({ state }) => {
@@ -45,7 +45,7 @@ const BarChartView = ({ state }) => {
             <Tooltip labelFormatter={formatTooltip} />
             {barChart
               ? <Bar dataKey='Items Sold' fill={chartFill} />
-              : <Line dataKey='Items Sold' stroke={chartFill} strokeWidth={3} />}
+              : <Line type='monotone' dataKey='Items Sold' stroke={chartFill} strokeWidth={3} />}
           </ComposedChart>
         </ResponsiveContainer>
       </div>
