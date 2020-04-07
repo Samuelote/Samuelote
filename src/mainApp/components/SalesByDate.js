@@ -15,7 +15,6 @@ const BarChartView = ({ state }) => {
   const [showEmptyDates, setShowEmptyDates] = useState(false)
   const [barChart, setBarChart] = useState(true)
   const chartData = groupByDate('date_of_sale', state, showEmptyDates)
-  // console.log(chartData)
   return (
     <div>
       <BooleanSwitch

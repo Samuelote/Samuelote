@@ -22,7 +22,6 @@ const Body = ({ state, setState }) => {
     avg_time_listed, sales, depop_fees, paypal_fees,
     free_shipping
   } = state.data
-  console.log(total_earnings, sales ? sales.length : null)
   return (
     <div className={container}>
 
@@ -121,5 +120,5 @@ const Body = ({ state, setState }) => {
 
 const NoneFound = ({ msg }) => (<div className={NoData}>
   {msg || 'No data found. Either change the date selection or upload another file.'}
-                                </div>)
+</div>)
 export default Body

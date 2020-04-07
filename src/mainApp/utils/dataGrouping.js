@@ -89,12 +89,13 @@ export const groupByDate = (key, data, showEmptyDates) => {
       if (!newData.length || latest['Date Sold'] !== date_of_sale) {
         if (latest && showEmptyDates) {
           const milisecs =
-            new Date(date_of_sale).getTime() - new Date(latest['Date Sold']).getTime()
+            new Date(moment(date_of_sale, 'MM-DD-YYYY').format()).getTime()            -
+            new Date(moment(latest['Date Sold'], 'MM-DD-YYYY').format()).getTime()
           const diff = milisecs / (1000 * 3600 * 24)
           if (diff !== 1) {
             for (let i = 1; i < diff; i++) {
-              const day = new Date(latest['Date Sold']).getDate() + i
-              const date = new Date(latest['Date Sold'])
+              const day = new Date(moment(latest['Date Sold'], 'MM-DD-YYYY').format()).getDate() + i
+              const date = new Date(moment(latest['Date Sold'], 'MM-DD-YYYY').format())
               const formatted = moment(date.setDate(day)).format('MM-DD-YYYY')
               newData.push({ 'Date Sold': formatted, 'Items Sold': 0 })
             }

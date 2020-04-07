@@ -11,14 +11,17 @@ import { filterData } from '../utils/dataSetup'
 
 const DateDisplay = ({ state, setState }) => {
   const sales = state.data.sales.length ? state.data.sales : state.originalData.sales
-  const [startDate, setStartDate] = useState(new Date(sales[0].date_of_sale))
-  const [endDate, setEndDate] = useState(new Date(sales[sales.length - 1].date_of_sale))
+  const [startDate, setStartDate] = useState(
+    new Date(moment(sales[0].date_of_sale, 'MM-DD-YYYY'))
+  )
+  const [endDate, setEndDate] = useState(
+    new Date(moment(sales[sales.length - 1].date_of_sale, 'MM-DD-YYYY'))
+  )
   const [activeBtn, activateBtn] = useState(null)
-
   // Sets global warning if current day isn't included in sales
   const originalDataEndDate =
     new Date(
-      state.originalData.sales[state.originalData.sales.length - 1].date_of_sale
+      moment(state.originalData.sales[state.originalData.sales.length - 1].date_of_sale, 'MM-DD-YYYY')
     )
   if (
     moment().diff(originalDataEndDate, 'days') > 0 &&
@@ -33,9 +36,10 @@ const DateDisplay = ({ state, setState }) => {
       })
   }
   useEffect(() => {
-    setStartDate(new Date(sales[0].date_of_sale))
-    setEndDate(new Date(sales[sales.length - 1].date_of_sale))
+    setStartDate(new Date(moment(sales[0].date_of_sale, 'MM-DD-YYYY')))
+    setEndDate(new Date(moment(sales[sales.length - 1].date_of_sale, 'MM-DD-YYYY')))
   }, [sales])
+
   const setPreset = (type) => {
     activateBtn(type)
     switch (type) {
@@ -55,8 +59,8 @@ const DateDisplay = ({ state, setState }) => {
         )
         break
       case 'full':
-        setStartDate(new Date(state.originalData.sales[0].date_of_sale))
-        setEndDate(new Date(sales[sales.length - 1].date_of_sale))
+        setStartDate(new Date(moment(state.originalData.sales[0].date_of_sale, 'MM-DD-YYYY')))
+        setEndDate(new Date(moment(sales[sales.length - 1].date_of_sale, 'MM-DD-YYYY')))
         setState(
           { data: state.originalData }
         )
@@ -64,6 +68,7 @@ const DateDisplay = ({ state, setState }) => {
       default:
     }
   }
+  // console.log(new Date(moment(sales[0].date_of_sale, 'MM-DD-YYYY')), startDate, sales)
   return (
     <div className={container}>
 
@@ -87,8 +92,14 @@ const DateDisplay = ({ state, setState }) => {
                 { data: filterData(state.originalData, { start, end }) }
               )
             }}
-            minDate={new Date(state.originalData.sales[0].date_of_sale)}
-            maxDate={new Date(state.originalData.sales[state.originalData.sales.length - 1].date_of_sale)}
+            minDate={new Date(moment(state.originalData.sales[0].date_of_sale, 'MM-DD-YYYY'))}
+            maxDate={
+              new Date(
+                moment(
+                  state.originalData.sales[state.originalData.sales.length - 1].date_of_sale, 'MM-DD-YYYY'
+                )
+              )
+            }
             placeholderText='start date'
             popperModifiers={popperModifier}
           />
@@ -113,9 +124,14 @@ const DateDisplay = ({ state, setState }) => {
                 { data: filterData(state.originalData, { start, end }) }
               )
             }}
-            minDate={new Date(state.originalData.sales[0].date_of_sale)}
-            maxDate={new Date(state.originalData.sales[state.originalData.sales.length - 1].date_of_sale)}
-
+            minDate={new Date(moment(state.originalData.sales[0].date_of_sale, 'MM-DD-YYYY'))}
+            maxDate={
+              new Date(
+                moment(
+                  state.originalData.sales[state.originalData.sales.length - 1].date_of_sale, 'MM-DD-YYYY'
+                )
+              )
+            }
             placeholderText='end date'
             popperModifiers={popperModifier}
 
