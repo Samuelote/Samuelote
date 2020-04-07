@@ -16,7 +16,7 @@ const SalesByDay = ({ state }) => {
     <div>
       <BooleanSwitch
         title1='Table'
-        title2='Bar Chart'
+        title2='View Chart'
         event={() => setView(!viewTable)}
         bool={viewTable}
       />
@@ -32,7 +32,7 @@ const SalesByDay = ({ state }) => {
                 <Tooltip />
                 <Bar dataKey='sales' fill={chartThird} />
               </BarChart>
-            </ResponsiveContainer>
+              </ResponsiveContainer>
         }
       </div>
     </div>
