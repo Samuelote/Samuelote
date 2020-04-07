@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ValueBox from './ValueBox'
 
-import { chartFill } from '../../colors.module.scss'
+import { chartThird } from '../../colors.module.scss'
 import { salesByDayContainer } from '../styles/salesByDay.module.scss'
 import { groupByDay } from '../utils/dataGrouping'
 import BooleanSwitch from './BooleanSwitch'
@@ -16,7 +16,7 @@ const SalesByDay = ({ state }) => {
     <div>
       <BooleanSwitch
         title1='Table'
-        title2='Bar Chart'
+        title2='View Chart'
         event={() => setView(!viewTable)}
         bool={viewTable}
       />
@@ -30,9 +30,9 @@ const SalesByDay = ({ state }) => {
               <BarChart data={data}>
                 <XAxis dataKey='day' />
                 <Tooltip />
-                <Bar dataKey='sales' fill={chartFill} />
+                <Bar dataKey='sales' fill={chartThird} />
               </BarChart>
-            </ResponsiveContainer>
+              </ResponsiveContainer>
         }
       </div>
     </div>

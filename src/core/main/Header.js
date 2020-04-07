@@ -5,7 +5,7 @@ import { container, logo, navigation, navBtn } from '../styles/header.module.scs
 const Header = () => {
   return (
     <div className={container}>
-      <div className={logo}>LOGO</div>
+      <div className={logo}><i>MePop</i></div>
       <div className={navigation}>
         <Link className={navBtn} to='/'>App</Link>
         <Link className={navBtn} to='/about'>About</Link>

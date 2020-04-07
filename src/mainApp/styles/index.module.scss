@@ -10,12 +10,12 @@
 .subContainer {
   display:flex;
   flex-direction: column;
-  max-width:1500px;
+  max-width:1800px;
   justify-content: center;
   align-items:center;
-  padding-bottom:20px;
+  padding-bottom:40px;
   width:100%;
-  margin-top: 20px;
+  margin-top: 40px;
 
 }
 .NoData {
@@ -30,22 +30,32 @@
 }
 .valueBoxes {
   display:flex;
-  justify-content: space-evenly;
+  // justify-content: space-between;
   align-items:center;
   flex-direction: row;
   width: 100%;
+}
+.radialGraphs {
+  display:flex;
+  width: 100%;
+  min-height: 300px;
+  // overflow-y: auto;
+  // border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  margin: 10px;
 }
 .switchContainer {
   display: flex;
   align-items: center;
   width: calc(100% - 10px);
   font-size: 17px;
-  padding:10px 0px;
+  padding:0px 0px 10px 0px;
   padding-left:10px;
 }
 .switchText {
   margin-left:10px;
   @include label;
+  
 }
 
 .singleContainer {

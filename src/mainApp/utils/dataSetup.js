@@ -76,11 +76,13 @@ const setUpState = (files, currencyType) => {
   data.sales = files
   data.total_earnings = 0
   data.total_shipping_cost = 0
-  data.total_fees_paid = 0
+  data.depop_fees = 0
+  data.paypal_fees = 0
   data.avg_price = 0
   data.avg_shipping = 0
   data.avg_total = 0
   data.avg_time_listed = 0
+  data.free_shipping = 0
   data.currency_type = currencyType || files[0].item_price[0]
   files.forEach((file) => {
     const miliSeconds = new Date(file.date_of_sale).getTime() - new Date(file.date_of_listing).getTime()
@@ -89,10 +91,17 @@ const setUpState = (files, currencyType) => {
     data.avg_total += currency(file.total).value
     data.total_earnings += currency(file.total).value
     data.total_shipping_cost += currency(file.buyer_shipping_cost).value + currency(file.usps_cost).value
-    data.total_fees_paid +=
+    data.depop_fees +=
       parseFloat(currency(file.depop_fee).value) +
       parseFloat(currency(file.depop_payments_fee).value)
     data.avg_time_listed += miliSeconds / (1000 * 3600 * 24)
+    if (currency(file.buyer_shipping_cost).value === 0) {
+      data.free_shipping++
+    }
+    if (file.payment_type === 'PAYPAL') {
+      // paypal fees are 2.9% + $0.30
+      data.paypal_fees += (0.029 * currency(file.item_price).value) + 0.30
+    }
   })
   data.avg_time_listed = parseInt(data.avg_time_listed / files.length)
   data.avg_price = parseFloat(data.avg_price / files.length).toFixed(2)
@@ -100,7 +109,8 @@ const setUpState = (files, currencyType) => {
   data.avg_total = parseFloat(data.avg_total / files.length).toFixed(2)
   data.total_earnings = parseFloat(data.total_earnings).toFixed(2)
   data.total_shipping_cost = parseFloat(data.total_shipping_cost).toFixed(2)
-  data.total_fees_paid = parseFloat(data.total_fees_paid).toFixed(2)
+  data.depop_fees = parseFloat(data.depop_fees).toFixed(2)
+  data.paypal_fees = parseFloat(data.paypal_fees).toFixed(2)
   data.getUrl = slug => `https://www.depop.com/${slug}/`
   return data
 }

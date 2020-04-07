@@ -1,5 +1,4 @@
 import React from 'react'
-import ProfilePic from '../../assets/profile.jpg'
 import PaypalLogo from '../../assets/paypal_logo.png'
 import { container, subContainer, h1, body, section, img, bottom, paypal } from '../styles/about.module.scss'
 
@@ -8,7 +7,6 @@ const About = () => {
     <div className={container}>
       <div className={subContainer}>
         <h1 className={h1}>A Little Background</h1>
-        <img src={ProfilePic} alt='Profile of Sam Wood' className={img} />
         <div className={body}>
           <p className={section}>
             For over a year, my girlfriend (<a href='https://www.depop.com/marguillen/'>@marguillen</a>)
