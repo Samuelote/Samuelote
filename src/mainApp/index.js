@@ -14,7 +14,6 @@ import Accordian from './components/Accordian'
 import TopRadialChart from './components/TopRadialChart'
 import IndividualStats from './components/IndividualStats'
 import TopSection from './TopSection'
-import Fade from './utils/Fade'
 
 const Body = ({ state, setState }) => {
   const {
@@ -125,5 +124,5 @@ const Body = ({ state, setState }) => {
 
 const NoneFound = ({ msg }) => (<div className={NoData}>
   {msg || 'No data found. Either change the date selection or upload another file.'}
-</div>)
+                                </div>)
 export default Body

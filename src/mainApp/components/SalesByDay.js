@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import ValueBox from './ValueBox'
 
 import { chartThird } from '../../colors.module.scss'
-import { salesByDayContainer } from '../styles/salesByDay.module.scss'
+import { salesByDayContainer, scrollContainer } from '../styles/salesByDay.module.scss'
 import { groupByDay } from '../utils/dataGrouping'
 import BooleanSwitch from './BooleanSwitch'
 import {
@@ -20,7 +20,7 @@ const SalesByDay = ({ state }) => {
         event={() => setView(!viewTable)}
         bool={viewTable}
       />
-      <div className={salesByDayContainer}>
+      <div className={viewTable ? scrollContainer : salesByDayContainer}>
         {
           viewTable && data.length
             ? data.map(({ day, sales }, i) => {
@@ -32,7 +32,7 @@ const SalesByDay = ({ state }) => {
                 <Tooltip />
                 <Bar dataKey='sales' fill={chartThird} />
               </BarChart>
-              </ResponsiveContainer>
+            </ResponsiveContainer>
         }
       </div>
     </div>

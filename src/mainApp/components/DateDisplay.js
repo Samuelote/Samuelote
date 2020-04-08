@@ -68,7 +68,6 @@ const DateDisplay = ({ state, setState }) => {
       default:
     }
   }
-  // console.log(new Date(moment(sales[0].date_of_sale, 'MM-DD-YYYY')), startDate, sales)
   return (
     <div className={container}>
 
@@ -98,7 +97,7 @@ const DateDisplay = ({ state, setState }) => {
                 moment(
                   state.originalData.sales[state.originalData.sales.length - 1].date_of_sale, 'MM-DD-YYYY'
                 )
-            )
+              )
             }
             placeholderText='start date'
             popperModifiers={popperModifier}
@@ -130,7 +129,7 @@ const DateDisplay = ({ state, setState }) => {
                 moment(
                   state.originalData.sales[state.originalData.sales.length - 1].date_of_sale, 'MM-DD-YYYY'
                 )
-            )
+              )
             }
             placeholderText='end date'
             popperModifiers={popperModifier}

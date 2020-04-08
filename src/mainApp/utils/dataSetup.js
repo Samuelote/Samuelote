@@ -54,7 +54,6 @@ const readCSVString = (file, results, err) => {
 
 // Initialized data format that we'll throw into our app's state
 export const initState = (originalFiles, setState, err) => {
-  console.log(originalFiles)
   const cleanedFiles = [...originalFiles]
   for (let i = 0; i < cleanedFiles.length; i++) {
     const row = cleanedFiles[i]

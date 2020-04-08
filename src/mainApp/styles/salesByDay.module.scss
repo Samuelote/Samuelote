@@ -1,6 +1,13 @@
-.salesByDayContainer {
+@mixin cont {
   display:flex;
   flex-wrap:wrap;
-  width: 100%;
   height: 300px;
+  width:100%;
+}
+.scrollContainer {
+  @include cont;
+  overflow-y: auto;
+}
+.salesByDayContainer {
+  @include cont;
 }
