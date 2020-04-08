@@ -14,6 +14,7 @@ import Accordian from './components/Accordian'
 import TopRadialChart from './components/TopRadialChart'
 import IndividualStats from './components/IndividualStats'
 import TopSection from './TopSection'
+import Fade from './utils/Fade'
 
 const Body = ({ state, setState }) => {
   const {
@@ -22,11 +23,11 @@ const Body = ({ state, setState }) => {
     avg_time_listed, sales, depop_fees, paypal_fees,
     free_shipping
   } = state.data
-  console.log(total_earnings, sales ? sales.length : null)
   return (
     <div className={container}>
 
       <div className={subContainer}>
+
         <TopSection state={state} setState={setState} />
 
         {
@@ -62,6 +63,7 @@ const Body = ({ state, setState }) => {
 
                           </div>
                           <IndividualStats
+                            currency={currency_type}
                             values={[
                               { label: 'Items Sold', value: sales ? sales.length : null },
                               { label: 'Average Item Price', value: avg_price },
@@ -82,11 +84,13 @@ const Body = ({ state, setState }) => {
                         <div className={doubleContainer}>
                           <Accordian
                             showBorder
+                            halfSize
                             title='Recent Sales (Past Week)'
                             component={<RecentSales state={state.data} />}
                           />
                           <Accordian
                             showBorder
+                            halfSize
                             title='Returning Customers'
                             component={<ReturningCustomers state={state.data} />}
                           />
@@ -115,6 +119,7 @@ const Body = ({ state, setState }) => {
         }
       </div>
     </div>
+
   )
 }
 

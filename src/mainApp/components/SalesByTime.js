@@ -8,7 +8,7 @@ import { groupByTime } from '../utils/dataGrouping'
 import BooleanSwitch from './BooleanSwitch'
 import { chartSecondary } from '../../colors.module.scss'
 
-import { subContainer, switchContainer, label } from '../styles/salesByTime.module.scss'
+import { scrollContainer, switchContainer, label, container } from '../styles/salesByTime.module.scss'
 
 const SalesByDay = ({ state }) => {
   const [viewTable, setView] = useState(true)
@@ -31,7 +31,7 @@ const SalesByDay = ({ state }) => {
           onChange={() => setTimeFormat(!timeFormat)}
         />
       </div>
-      <div className={subContainer}>
+      <div className={viewTable ? scrollContainer : container}>
 
         {
           viewTable && data.length

@@ -31,7 +31,7 @@
 .valueBoxes {
   display:flex;
   // justify-content: space-between;
-  align-items:center;
+  // align-items:center;
   flex-direction: row;
   width: 100%;
 }
@@ -39,10 +39,7 @@
   display:flex;
   width: 100%;
   min-height: 300px;
-  // overflow-y: auto;
-  // border-radius: $border-radius;
-  box-shadow: $box-shadow;
-  margin: 10px;
+  margin: 15px;
 }
 .switchContainer {
   display: flex;

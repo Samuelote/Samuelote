@@ -6,8 +6,8 @@ export const filterData = (data, { start, end }) => {
   const filteredData = []
   data.sales.forEach((file) => {
     if (
-      new Date(file.date_of_sale) >= start &&
-      new Date(file.date_of_sale) <= end
+      new Date(moment(file.date_of_sale, 'MM-DD-YYYY').format()) >= start &&
+      new Date(moment(file.date_of_sale, 'MM-DD-YYYY').format()) <= end
     ) {
       filteredData.push(file)
     }
@@ -54,6 +54,7 @@ const readCSVString = (file, results, err) => {
 
 // Initialized data format that we'll throw into our app's state
 export const initState = (originalFiles, setState, err) => {
+  console.log(originalFiles)
   const cleanedFiles = [...originalFiles]
   for (let i = 0; i < cleanedFiles.length; i++) {
     const row = cleanedFiles[i]
@@ -85,7 +86,8 @@ const setUpState = (files, currencyType) => {
   data.free_shipping = 0
   data.currency_type = currencyType || files[0].item_price[0]
   files.forEach((file) => {
-    const miliSeconds = new Date(file.date_of_sale).getTime() - new Date(file.date_of_listing).getTime()
+    const miliSeconds = new Date(moment(file.date_of_sale, 'MM-DD-YYYY').format()).getTime() -
+      new Date(moment(file.date_of_listing, 'MM-DD-YYYY').format()).getTime()
     data.avg_price += currency(file.item_price).value
     data.avg_shipping += currency(file.buyer_shipping_cost).value
     data.avg_total += currency(file.total).value
@@ -119,7 +121,6 @@ const cleanAndSort = (originalFiles) => {
   // gets rid of header row
   const filesToMap = originalFiles.slice().filter(row => row[0] !== 'Date of sale')
   const newFiles = []
-
   // get's rid of duplicates and converts arrays to objects
   filesToMap.forEach((row, i) => {
     const item = {}
@@ -150,8 +151,12 @@ const cleanAndSort = (originalFiles) => {
 const sort = (sales) => {
   // Sorts by date
   const sorted = sales.sort((a, b) => {
-    const fullDateA = new Date(`${a.date_of_sale} ${a.time_of_sale}`)
-    const fullDateB = new Date(`${b.date_of_sale} ${b.time_of_sale}`)
+    const fullDateA = new Date(
+      moment(`${a.date_of_sale} ${a.time_of_sale}`, 'MM-DD-YYYY hh:mm A').format()
+    )
+    const fullDateB = new Date(
+      moment(`${b.date_of_sale} ${b.time_of_sale}`, 'MM-DD-YYYY hh:mm A').format()
+    )
     return fullDateA - fullDateB
   })
   return sorted

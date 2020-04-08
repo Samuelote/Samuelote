@@ -1,13 +1,18 @@
 @import '../../colors.module.scss';
 @import '../../global.module.scss';
 
-
-.subContainer {
+@mixin cont {
   display:flex;
   flex-wrap:wrap;
-  width: 100%;
   height: 300px;
+  width:100%;
+}
+.scrollContainer {
+@include cont;
   overflow-y: auto;
+}
+.container {
+@include cont;
 }
 .switchContainer {
   @include label;
