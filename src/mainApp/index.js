@@ -54,8 +54,8 @@ const Body = ({ state, setState }) => {
                                   value: parseFloat(total_earnings - total_shipping_cost - depop_fees)
                                 },
                                 { name: 'Depop Fees', value: parseFloat(depop_fees) },
-                                { name: 'Total Shipping', value: parseFloat(total_shipping_cost) },
-                                { name: 'Paypal Fees', value: parseFloat(paypal_fees) }
+                                { name: 'Paypal Fees', value: parseFloat(paypal_fees) },
+                                { name: 'Total Shipping', value: parseFloat(total_shipping_cost) }
                               ]}
 
                             />
@@ -124,5 +124,5 @@ const Body = ({ state, setState }) => {
 
 const NoneFound = ({ msg }) => (<div className={NoData}>
   {msg || 'No data found. Either change the date selection or upload another file.'}
-                                </div>)
+</div>)
 export default Body

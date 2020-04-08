@@ -78,7 +78,7 @@ const FileModal = ({ open, closeModal, setState, saveAndClose }) => {
                     <li>Click 'Download Sales' (top right corner)</li>
                     <li>Select date range and click 'Download'</li>
                   </ol>
-                  <img alt='Instructions for getting depop file' className={gif} src={getFileGif} />
+                  <img alt='Instructions for obtaining depop file' className={gif} src={getFileGif} />
                 </div>
               )
               : null
