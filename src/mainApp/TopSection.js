@@ -6,6 +6,7 @@ import { setUpExampleFile } from '../assets/example_file.js'
 import FileModal from './components/FileModal'
 
 import { subContainer, container, mainContainer } from './styles/topSection.module.scss'
+import Fade from './utils/Fade'
 
 const TopSection = ({ state, setState }) => {
   const [modalIsOpen, openModal] = useState(false)
@@ -20,6 +21,7 @@ const TopSection = ({ state, setState }) => {
   }, [useExample])
 
   return (
+
     <div className={container}>
       <FileModal
         closeModal={() => {
@@ -47,11 +49,15 @@ const TopSection = ({ state, setState }) => {
 
         {
           state.data.sales
-            ? <div className={mainContainer}>
-              <DateDisplay state={state} setState={setState} />
+            ? <Fade show>
+
+              <div className={mainContainer}>
+                <DateDisplay state={state} setState={setState} />
               </div>
+            </Fade>
             : null
         }
+
       </div>
     </div>
   )

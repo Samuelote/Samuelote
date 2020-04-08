@@ -15,17 +15,18 @@
   align-items: center;
   cursor:pointer;
 }
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
 
 .container {
   margin:15px;
   flex: 1;
   border-radius: $border-radius;
-
+  // box-shadow: $box-shadow;
+}
+.halfContainer {
+  margin:15px;
+  // box-shadow: none;
+  height: 100%;
+  width: calc(50% - 30px);
 }
 .borderHeader {
   @include Header;
@@ -44,7 +45,6 @@
 }
 .body{
   background-color: $secondary-bg-color;
-  box-shadow: $box-shadow;
   width: 100%;
   border-radius: $border-radius;
   border-top-right-radius: 0px;

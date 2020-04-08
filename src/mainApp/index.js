@@ -14,6 +14,7 @@ import Accordian from './components/Accordian'
 import TopRadialChart from './components/TopRadialChart'
 import IndividualStats from './components/IndividualStats'
 import TopSection from './TopSection'
+import Fade from './utils/Fade'
 
 const Body = ({ state, setState }) => {
   const {
@@ -26,6 +27,7 @@ const Body = ({ state, setState }) => {
     <div className={container}>
 
       <div className={subContainer}>
+
         <TopSection state={state} setState={setState} />
 
         {
@@ -82,11 +84,13 @@ const Body = ({ state, setState }) => {
                         <div className={doubleContainer}>
                           <Accordian
                             showBorder
+                            halfSize
                             title='Recent Sales (Past Week)'
                             component={<RecentSales state={state.data} />}
                           />
                           <Accordian
                             showBorder
+                            halfSize
                             title='Returning Customers'
                             component={<ReturningCustomers state={state.data} />}
                           />
@@ -115,6 +119,7 @@ const Body = ({ state, setState }) => {
         }
       </div>
     </div>
+
   )
 }
 

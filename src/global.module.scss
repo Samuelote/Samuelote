@@ -9,4 +9,48 @@
 }
 
 $border-radius: 4px;
-$box-shadow: 1px 2px 5px rgba(0, 0, 0, .3);
+$box-shadow: 4px 2px 5px rgba(0, 0, 0, .3);
+
+:export {
+  boxShadow: $box-shadow
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    box-shadow: none;
+  }
+  100% {
+    opacity: 1;
+    box-shadow: $box-shadow;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    box-shadow:$box-shadow;
+  }
+  100% {
+    opacity: 0;
+    box-shadow: none;
+  }
+}
+
+@keyframes fadeInOpacityOnly {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutOpacityOnly {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

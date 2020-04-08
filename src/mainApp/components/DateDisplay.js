@@ -98,7 +98,7 @@ const DateDisplay = ({ state, setState }) => {
                 moment(
                   state.originalData.sales[state.originalData.sales.length - 1].date_of_sale, 'MM-DD-YYYY'
                 )
-              )
+            )
             }
             placeholderText='start date'
             popperModifiers={popperModifier}
@@ -130,7 +130,7 @@ const DateDisplay = ({ state, setState }) => {
                 moment(
                   state.originalData.sales[state.originalData.sales.length - 1].date_of_sale, 'MM-DD-YYYY'
                 )
-              )
+            )
             }
             placeholderText='end date'
             popperModifiers={popperModifier}
@@ -168,7 +168,7 @@ export default DateDisplay
 const popperModifier = {
   offset: {
     enabled: true,
-    offset: '-50px, 10px'
+    offset: '-25px, -30px'
   },
   preventOverflow: {
     enabled: true,
