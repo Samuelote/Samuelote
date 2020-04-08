@@ -35,9 +35,9 @@ const TopRadialGraphs = ({
     <div className={container}>
       <div className={titlesContainer}>
 
-        <div className={boxTitle}>
+        <h2 className={boxTitle}>
           {title.toUpperCase()}
-        </div>
+        </h2>
         <div className={switchContainer}>
           <Switch
             checked={net}

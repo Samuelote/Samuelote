@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom'
 
 import FooterWarning from '../components/FooterWarning'
-import ShipStationAd from '../components/ShipStationAd'
+// import ShipStationAd from '../components/ShipStationAd'
 import Header from './Header'
 import About from './About'
 import MainApp from '../../mainApp'
@@ -25,7 +25,7 @@ const Core = () => {
 
         <Route path='/'>
           <MainApp state={state} setState={updateState} />
-          <ShipStationAd />
+          {/* <ShipStationAd /> */}
           {
             state.warning
               ? (<FooterWarning msg={state.warning} close={() => updateState({ warning: '' })} />)
