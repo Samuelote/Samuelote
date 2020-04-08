@@ -25,7 +25,7 @@ const About = () => {
             it to anybody who may be interested in their own personal stats.
             <br />
             <br />
-            Thanks for checking it out, and if you feel so inclined, you can
+            Thanks for checking it out, and if you feel so inclined, feel free to
             donate. Your donations will allow me to spend more time on this project
             and pump out new features much quicker.
             <br />
