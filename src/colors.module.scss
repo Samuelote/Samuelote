@@ -1,16 +1,17 @@
-$primary-bg-color: #dce4e7;
+$primary-bg-color: #e0e0e0;
 $secondary-bg-color: #fff;
-$highlight-color: #3b628d;
-$border-primary: #b3ccd4;
-$text-highlight: #3b628d;
+$highlight-color: #293757;
+$border-primary: #b2cede;
+$text-highlight: #22293a;
 $text-subtle: #7e7e7e;
 $outline: #a3a3a3;
 $inactive-btn: #ededed;
 $input: #ededed;
 $charcoal: rgb(93, 93, 93);
-$chart-fill: #FFBB28;
+$chart-fill: #FFBB2a;
 $chart-secondary: #E56469;
 $chart-third: #59bd6b;
+$chart-fourth: #b2cede;
 
 // 65df65 green fill
 // efb5ea pink chart fill
@@ -27,4 +28,5 @@ $warning-yellow: #ffd705;
   chartFill:$chart-fill;
   chartSecondary: $chart-secondary;
   chartThird: $chart-third;
+  chartFourth: $chart-fourth;
 }

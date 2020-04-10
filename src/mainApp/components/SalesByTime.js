@@ -6,7 +6,7 @@ import {
 } from 'recharts'
 import { groupByTime } from '../utils/dataGrouping'
 import BooleanSwitch from './BooleanSwitch'
-import { chartSecondary } from '../../colors.module.scss'
+import { chartThird } from '../../colors.module.scss'
 
 import { scrollContainer, switchContainer, label, container } from '../styles/salesByTime.module.scss'
 
@@ -42,15 +42,15 @@ const SalesByDay = ({ state }) => {
                 title={timeFormat ? twentyFour : twelve}
                 value={sales || 0}
                 trueCase
-                     />
+              />
             })
             : <ResponsiveContainer width='100%' height='100%'>
               <LineChart data={data}>
                 <XAxis dataKey={timeFormat ? 'twentyFour' : 'twelve'} />
                 <Tooltip />
-                <Line dataKey='sales' stroke={chartSecondary} strokeWidth={2} />
+                <Line dataKey='sales' stroke={chartThird} strokeWidth={2} />
               </LineChart>
-              </ResponsiveContainer>
+            </ResponsiveContainer>
         }
       </div>
     </div>
