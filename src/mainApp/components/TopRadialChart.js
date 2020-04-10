@@ -6,14 +6,14 @@ import {
 } from 'recharts'
 
 import {
-  chartFill, hightlightColor, chartSecondary, chartThird
+  chartFill, chartFourth, chartSecondary, chartThird
 } from '../../colors.module.scss'
 import {
   container, boxTitle, boxValue, chart,
   titlesContainer, switchContainer, label
 } from '../styles/TopRadialChart.module.scss'
 
-const COLORS = [chartFill, chartSecondary, chartThird, hightlightColor]
+const COLORS = [chartFill, chartSecondary, chartThird, chartFourth]
 
 const TopRadialGraphs = ({
   title,
