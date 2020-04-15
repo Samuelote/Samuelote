@@ -3,6 +3,8 @@ import Modal from 'react-modal'
 import Files from 'react-files'
 import { Icon } from 'react-icons-kit'
 import { chevronDown, chevronUp } from 'react-icons-kit/ionicons'
+import { useMutation } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
 
 import { processFiles } from '../utils/dataSetup'
 import getFileGif from '../../assets/get_file_example.gif'
@@ -14,7 +16,24 @@ import {
 
 Modal.setAppElement('#root')
 
+// const ADD_FILE = gql`
+//   mutation uploadFiles($file: Upload!){
+//     uploadFiles(files: $file){
+//       success
+//       error
+//   }
+// }
+// `
+
+const uploadFileMutation = gql`
+  mutation($file: Upload!){
+    uploadFile(file: $file)
+  }
+`
+
 const FileModal = ({ open, closeModal, setState, saveAndClose }) => {
+  const [addFile, { data }] = useMutation(uploadFileMutation)
+
   const [files, updateFiles] = useState([])
   const [gifIsActive, openGif] = useState(false)
   useEffect(() => {
@@ -39,6 +58,9 @@ const FileModal = ({ open, closeModal, setState, saveAndClose }) => {
       () => updateFiles([])
     )
     return error
+  }
+  if (files.length) {
+    console.log(files)
   }
   return (
     <div className={container}>
@@ -118,7 +140,10 @@ const FileModal = ({ open, closeModal, setState, saveAndClose }) => {
           disabled={!files.length}
           className={!files.length ? btnDisabled : btn}
           onClick={
-            () => updateFileHandler(files, saveAndClose)
+            () => {
+              addFile({ variables: { file: files[0] } })
+              updateFileHandler(files, saveAndClose)
+            }
           }
         >
           Generate Report

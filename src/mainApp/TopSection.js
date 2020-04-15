@@ -49,12 +49,13 @@ const TopSection = ({ state, setState }) => {
 
         {
           state.data.sales
-            ? <Fade show>
-
-              <div className={mainContainer}>
-                <DateDisplay state={state} setState={setState} />
-              </div>
-            </Fade>
+            ? (
+              <Fade show>
+                <div className={mainContainer}>
+                  <DateDisplay state={state} setState={setState} />
+                </div>
+              </Fade>
+            )
             : null
         }
 
