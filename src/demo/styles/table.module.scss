@@ -1,0 +1,48 @@
+@import '../../styles/colors.module.scss';
+@import '../../styles/global.module.scss';
+
+@mixin row {
+  display:flex;
+  justify-content: space-between;
+  padding: 15px 10px;
+  @include label;
+
+  // border: 1px solid $border-primary;
+}
+.container {
+  height: 450px;
+  overflow: auto;
+}
+.a {
+  color:black;
+}
+.singleRow {
+  @include row;
+  font-weight: 400;
+  color:black;
+  font-size: 15px;
+ border-top:none;
+}
+.singleRow:hover {
+  background: $primary-bg-color;
+  transition: .1s;
+}
+.headerRow {
+  @include row;
+  margin-top:10px;
+  background: $primary-bg-color;
+  // border-bottom: 2px solid $border-primary;
+}
+.tableContainer {
+  margin: 0px 10px;
+  padding:5px 0px 15px 0px;
+  border-top: none;
+}
+.NoResults {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  color: $text-subtle;
+  height:150px;
+}

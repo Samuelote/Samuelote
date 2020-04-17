@@ -1,0 +1,82 @@
+@import '../../styles/colors.module.scss';
+@import '../../styles/global.module.scss';
+
+@keyframes fadeIn {
+  to {color: rgba(0,0,0,1)}
+}
+@mixin cont {
+  display:flex;
+  justify-content: space-evenly;
+  width:100%;
+  background: $secondary-bg-color;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  
+}
+.container {
+  @include cont;
+}
+.switchContainer {
+  @include label;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  padding-top: 10px;
+}
+.label {
+  margin-left: 5px;
+}
+.chart {
+  min-width: 250px;
+  height: 250px;
+}
+.titlesContainer {
+  display:flex;
+  justify-content:center;
+  flex-direction:column;
+}
+.boxTitle {
+  padding:5px;
+  text-align: left;
+  font-size: 30px;
+  border-bottom: 1px solid $border-primary;
+  position: relative;
+  display:flex;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 0px;
+}
+
+.boxValue {
+  margin-top: 10px;
+  text-align: left;
+  font-size: 30px;
+  font-weight:500;
+  color: $text-highlight;
+}
+
+.boxQm {
+  cursor:pointer;
+  position: absolute;
+  right: 5px;
+  top: 3px;
+  color: #525252;
+  background: transparent;
+  border: none;
+}
+
+.boxArrow {
+  margin-right: 5px;
+}
+
+@media only screen and (max-width: 860px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .switchContainer, .boxValue {
+    display:flex;
+    justify-content: center;
+  }
+}

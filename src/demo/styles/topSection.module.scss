@@ -1,0 +1,22 @@
+@import '../../styles/global.module.scss';
+
+
+.container {
+  width: 100%;
+  overflow: auto;
+  border-radius: $border-radius;
+}
+.subContainer {
+  margin: 15px;
+  background:white;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+  overflow: auto;
+
+
+}
+.mainContainer {
+  display: flex;
+  justify-content: center;
+
+}

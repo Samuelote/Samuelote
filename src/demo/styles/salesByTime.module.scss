@@ -1,0 +1,27 @@
+@import '../../styles/colors.module.scss';
+@import '../../styles/global.module.scss';
+
+@mixin cont {
+  display:flex;
+  flex-wrap:wrap;
+  height: 300px;
+  width:100%;
+}
+.scrollContainer {
+@include cont;
+  overflow-y: auto;
+}
+.container {
+@include cont;
+}
+.switchContainer {
+  @include label;
+  padding-right: 30px;
+  padding-top: 10px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+}
+.label {
+  margin-right: 10px;
+}

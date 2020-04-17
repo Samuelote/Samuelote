@@ -1,0 +1,23 @@
+
+@import '../../styles/colors.module.scss';
+@import '../../styles/global.module.scss';
+
+.switchContainer {
+  @include label;
+  padding-right: 30px;
+  padding-top: 10px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+}
+.label {
+  margin-right: 10px;
+}
+.chartContainer {
+  display:flex;
+  flex-wrap:wrap;
+  width: 100%;
+  height: 300px;
+  // overflow-y: auto;
+}
+

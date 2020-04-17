@@ -1,0 +1,108 @@
+@import '../../styles/colors.module.scss';
+@import '../../styles/global.module.scss';
+
+@mixin btn {
+  @include label;
+  border: none;
+  background: $input;
+  font-size: 14px;
+  height:40px;
+  width: 120px;
+  cursor:pointer;
+  outline-color: $outline;
+  margin-left:10px;
+  margin-top:18px;
+  transition: .1s;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+
+}
+.container {
+  display:flex;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 15px 0px;
+  
+}
+
+.inputs {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 50%;
+  
+}
+
+.inputContainer {
+  margin: 2px 5px;
+  min-width: 190px;
+  
+}
+.label {
+  @include label
+}
+.datePicker {
+  height:38px;
+  font-size: 14px;
+  border:none;
+  text-align:center;
+  background: $input;
+  width:100%;
+  color: $text-subtle;
+  font-weight: 600;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+}
+
+.btnContainer { 
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.presetBtn {
+ @include btn;
+}
+.activePresetBtn {
+  @include btn;
+  color: $highlight-color;
+  box-shadow: none;
+}
+
+@media only screen and (max-width: 800px) {
+
+  .container {
+    max-width: 350px;
+  }
+  .datePicker {
+    color: $text-subtle;
+    font-weight: 500;
+  }
+  .inputs {
+    flex-direction: column;
+    width: auto;
+  }
+  .inputContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .datePicker {
+    max-width: 80px;
+  }
+  .btnContainer { 
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+  }
+  .presetBtn, .activePresetBtn {
+    height:20px;
+    width: 80px;
+    font-size: 10px;
+    margin-top:0px;
+    border-width: 1px;
+    width: 85%;
+    margin-right:10px;
+  }
+  
+}

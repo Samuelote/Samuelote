@@ -1,0 +1,16 @@
+
+@import '../../styles/colors.module.scss';
+@import '../../styles/global.module.scss';
+
+.container {
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  width: 100%;
+  min-height: 300px;
+  overflow-y: auto;
+  // background: $secondary-bg-color;
+  // border-radius: $border-radius;
+  // box-shadow: $box-shadow;
+  // margin: 10px;
+}

@@ -1,0 +1,71 @@
+@import '../../styles/colors.module.scss';
+@import '../../styles/global.module.scss';
+
+@keyframes fadeIn {
+  to {color: rgba(0,0,0,1)}
+}
+@mixin cont {
+  margin: 15px;
+  background: $secondary-bg-color;
+  overflow: auto;
+  border-radius: $border-radius;
+  flex: 1 1;
+  min-width: 300px;
+}
+
+@mixin title {
+  padding:5px;
+  text-align: left;
+  font-size: 20px;
+  border-bottom: 1px solid $border-primary;
+  position: relative;
+  font-weight: 500;
+  display:flex;
+}
+
+@mixin value {
+  padding:5px;
+  padding-left: 10px;
+  text-align: left;
+  font-size: 30px;
+  font-weight:500;
+  color: $text-highlight;
+}
+.container {
+  @include cont;
+  box-shadow: $box-shadow;
+}
+.halfcontainer {
+  @include cont;
+}
+.boxHalfTitle {
+  @include title;
+  font-size: 14px;
+}
+.boxTitle {
+  @include title;
+}
+.boxValue {
+  @include value;
+}
+.boxHalfValue {
+  @include value;
+  font-size: 25px;
+}
+// .boxSubValue {
+//   padding:5px;
+//   padding-left: 10px;
+//   font-size: 17px;
+//   text-align: left;
+//   color: rgba(0,0,0,0);
+//   animation: fadeIn .8s;
+//   animation-iteration-count: 1;
+//   animation-fill-mode: forwards;
+// }
+
+
+@media only screen and (max-width: 860px) {
+  .halfcontainer {
+   width: 25%;
+  }
+}
