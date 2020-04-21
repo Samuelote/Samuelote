@@ -15,6 +15,7 @@
 }
 .container {
   @include cont;
+  padding-left:10px;
 }
 .switchContainer {
   @include label;
@@ -28,7 +29,8 @@
 }
 .chart {
   min-width: 250px;
-  height: 250px;
+  height: 50%; 
+  min-height: 250px;
 }
 .titlesContainer {
   display:flex;

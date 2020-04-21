@@ -1,15 +1,6 @@
 @import '../../styles/colors.module.scss';
 @import '../../styles/global.module.scss';
 
-@mixin btn {
-  width: 100%;
-  border:none;
-  height: 30px;
-  cursor:pointer;
-  font-size: 14px;
-  transition: .2s;
-  @include label;
-}
 .container {
   width: 100%;
   display: flex;
@@ -17,8 +8,6 @@
 
 .button {
   @include btn;
-  background: $inactive-btn;
-  outline-color: $outline;
 }
 .buttonSelected {
   @include btn;

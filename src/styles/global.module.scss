@@ -1,20 +1,41 @@
 @import "./colors.module.scss";
 
-@mixin label{
+//mixins
+@mixin errorText {
+  color: red;
+  font-weight: 500;
+  transition: .5s;
+}
+@mixin label {
   font-weight: 600;
   font-size: 13px;
   line-height: 18px;
   text-transform: uppercase;
   color: $text-subtle;
 }
+@mixin btn {
+  width: 100%;
+  border:none;
+  height: 30px;
+  cursor:pointer;
+  font-size: 14px;
+  transition: .2s;
+  background: $inactive-btn;
+  outline-color: $outline;
+  @include label;
+}
 
+
+//vars
 $border-radius: 4px;
 $box-shadow: 4px 2px 5px rgba(0, 0, 0, .3);
 
+//exports
 :export {
   boxShadow: $box-shadow
 }
 
+//animations
 @keyframes fadeIn {
   0% {
     opacity: 0;
