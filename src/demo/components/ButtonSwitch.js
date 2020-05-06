@@ -16,7 +16,6 @@ const ButtonSwitch = ({ title1, title2, event1, event2, bool, big }) => {
         className={bool ? button : buttonSelected}
         style={big ? { height: '50px', fontSize: '14px' } : {}}
         onClick={event2}
-
       >
         {title2}
       </button>

@@ -7,15 +7,19 @@ $text-subtle: #7e7e7e;
 $outline: #a3a3a3;
 $inactive-btn: #ededed;
 $input: #ededed;
-$charcoal: rgb(93, 93, 93);
+$charcoal: #5d5d5d;
 $chart-fill: #FFBB2a;
 $chart-secondary: #E56469;
 $chart-third: #59bd6b;
 $chart-fourth: #96c1da;
+$lightgrey: #f2f2f2;
+
+$danger: #ff4747;
+$safe: #069f06;
 
 // 65df65 green fill
 // efb5ea pink chart fill
-$warning-yellow: #ffd705;
+$notification-yellow: #ffd600;
 
 :export {
   primaryBgColor: $primary-bg-color;

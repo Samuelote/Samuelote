@@ -18,21 +18,25 @@ const DateDisplay = ({ state, setState }) => {
     new Date(moment(sales[sales.length - 1].date_of_sale, 'MM-DD-YYYY'))
   )
   const [activeBtn, activateBtn] = useState(null)
-  // Sets global warning if current day isn't included in sales
+  // Sets global notification if current day isn't included in sales
   const originalDataEndDate =
     new Date(
       moment(state.originalData.sales[state.originalData.sales.length - 1].date_of_sale, 'MM-DD-YYYY')
     )
   if (
     moment().diff(originalDataEndDate, 'days') > 0 &&
-    state.warning === null &&
+    JSON.stringify(state.notification) === '{}' &&
     !state.example
   ) {
     setState(
       {
-        warning: `Your latest sale on record is ${moment(originalDataEndDate).format('MMMM Do YYYY')}. 
-      If any sales have occurred between ${moment(originalDataEndDate).format('MMMM Do YYYY')} and now, 
-      those sales will not be accounted for in this report.`
+        notification: {
+          position: 'bottom',
+          type: 'warning',
+          msg: `Your latest sale on record is ${moment(originalDataEndDate).format('MMMM Do YYYY')}. 
+            If any sales have occurred between ${moment(originalDataEndDate).format('MMMM Do YYYY')} and now, 
+            those sales will not be accounted for in this report.`
+        }
       })
   }
   useEffect(() => {

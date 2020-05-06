@@ -3,19 +3,24 @@ import { initState } from './utils/dataSetup'
 import DateDisplay from './components/DateDisplay'
 import ButtonSwitch from './components/ButtonSwitch'
 import { setUpExampleFile } from '../assets/example_file.js'
-import FileModal from './components/FileModal'
+import FileModal from './components/fileModal'
 
 import { subContainer, container, mainContainer } from './styles/topSection.module.scss'
 import Fade from './utils/Fade'
 
-const TopSection = ({ state, setState }) => {
+const TopSection = ({ state, setState, client }) => {
   const [modalIsOpen, openModal] = useState(false)
   const [useExample, setUseExample] = useState(true)
   useEffect(() => {
     if (useExample) {
       initState(
         setUpExampleFile(),
-        (data) => setState({ data, example: true, warning: '', originalData: data })
+        (data) => setState({
+          data,
+          example: true,
+          notification: {},
+          originalData: data
+        })
       ) // set up state from local string/file in assets folder
     }
   }, [useExample])
@@ -24,12 +29,14 @@ const TopSection = ({ state, setState }) => {
 
     <div className={container}>
       <FileModal
+        client={client}
         closeModal={() => {
           openModal(!modalIsOpen)
           if (state.example) {
             setUseExample(true)
           }
         }}
+        state={state}
         open={modalIsOpen}
         setState={setState}
         saveAndClose={() => openModal(!modalIsOpen)}
@@ -43,7 +50,7 @@ const TopSection = ({ state, setState }) => {
             openModal(true)
           }}
           title1='Generate Example'
-          title2='Upload File'
+          title2='Upload Files'
           big
         />
 

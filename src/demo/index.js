@@ -14,7 +14,7 @@ import TopRadialChart from './components/TopRadialChart'
 import IndividualStats from './components/IndividualStats'
 import TopSection from './TopSection'
 
-const Body = ({ state, setState }) => {
+const Body = ({ state, setState, client }) => {
   const {
     currency_type, total_earnings,
     avg_price, total_shipping_cost,
@@ -26,7 +26,7 @@ const Body = ({ state, setState }) => {
 
       <div className={subContainer}>
 
-        <TopSection state={state} setState={setState} />
+        <TopSection state={state} setState={setState} client={client} />
 
         {
           state.data.sales
@@ -123,5 +123,5 @@ const Body = ({ state, setState }) => {
 
 const NoneFound = ({ msg }) => (<div className={NoData}>
   {msg || 'No data found. Either change the date selection or upload another file.'}
-</div>)
+                                </div>)
 export default Body

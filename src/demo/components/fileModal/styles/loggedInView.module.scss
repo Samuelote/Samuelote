@@ -1,0 +1,124 @@
+@import '../../../../styles/colors.module.scss';
+@import '../../../../styles/global.module.scss';
+
+.container{
+  width: 100%;
+  height: 400px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $charcoal;
+  position: relative;
+  background: $lightgrey;
+  border-radius: $border-radius;
+}
+
+.fileRow {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: $charcoal;
+  margin: 10px;
+  margin-right: 3px;
+  align-self:flex-start;
+}
+.hiddenText {
+  position: absolute;
+  top: 30%;
+  color: transparent;
+  transition: 4s;
+}
+.h2 {
+  position: absolute;
+  top: 30%;
+  transition: 4s;
+  color: $charcoal;
+  text-align: center;
+  max-width: 90%;
+}
+@mixin icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height:30px;
+  border-radius: 30px;
+  color: $charcoal;
+  cursor: pointer;
+  border: 2px solid $charcoal;
+  margin-right: 10px;
+  transition: .2s;
+  background-color: transparent;
+}
+
+.checkIcon {
+  @include icon;
+  color: $safe;
+}
+.checkIcon:hover {
+ border-color: $safe;
+}
+.deleteIcon {
+  @include icon;
+  color: $danger;
+  border-radius: $border-radius;
+
+}
+.topBtnContainer{
+  display:flex;
+  justify-content: space-between;
+  margin: 10px 0px;
+}
+.logoutBtn{
+  background: transparent;
+  border:none;
+  border-bottom: 1px solid $charcoal;
+  color: $charcoal;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding:0px;
+  margin-right:1px;
+  opacity:.8;
+  height: 30px;
+}
+.logoutBtn:hover {
+  opacity:1;
+
+}
+.logoutBtn > i {
+  margin-left:5px;
+}
+.addBtn{
+  border: none;
+  background:transparent;
+  cursor: pointer;
+  color: $highlight-color;
+  // border: 1px solid $highlight-color;
+  border-radius: $border-radius;
+  padding:0px;
+  opacity:.8;
+  transition: .2s;
+  margin-right: 1px;
+}
+.addBtn:hover {
+  opacity: 1;
+}
+.deleteIcon:hover {
+  border-color:$danger;
+  color: $danger;
+}
+
+.dropzone {
+  // border: 2px solid $inactive-btn;
+  // border-radius: $border-radius;
+  transition: .2s;
+  border-style: solid;
+  border-color: transparent;
+  color: $charcoal;
+  outline: none;
+}

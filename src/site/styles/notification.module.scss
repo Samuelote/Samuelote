@@ -1,0 +1,67 @@
+@import '../../styles/colors.module.scss';
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+@mixin container {
+  position: fixed;
+  bottom: 0px;
+  min-height: 50px;
+  width: 100%;
+  padding-top: 30px;
+  opacity: 0;
+  animation: fadeIn 1s 1 linear;
+  animation-fill-mode: forwards;
+  animation-delay: .5s;
+  font-weight: 500;
+  letter-spacing: .3px;
+  z-index: 1;
+}
+@mixin x {
+  position: absolute;
+  top: 5px;
+  right:15px;
+  cursor: pointer;
+  font-size: 20px;
+}
+.top {
+  top: 0px;
+  bottom: initial !important;
+}
+.warning {
+  @include container;
+  background: $notification-yellow;
+  color: $charcoal;
+}
+.bad {
+  @include container;
+  background: $danger;
+  color:white;
+}
+.good {
+  @include container;
+  background: $safe;
+  color:white;
+}
+.textContainer {
+  padding: 15px;
+  padding-top: 0;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  font-size: 18px;
+}
+
+.whiteCloseX {
+  @include x;
+  color: white;
+}
+.closeX {
+  @include x;
+  color: $charcoal;
+}
+
+.closeX:hover {
+  color: black;
+}

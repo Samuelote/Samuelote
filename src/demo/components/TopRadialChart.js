@@ -53,6 +53,12 @@ const TopRadialGraphs = ({
         <div className={boxValue}>
           {currencyType}
           <CountUp
+            formattingFn={
+              num => num.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+              })
+            }
             decimals={float ? 2 : 0}
             start={activeVal === value ? parseFloat(netValue) : parseFloat(value)}
             end={float ? parseFloat(activeVal) : typeof activeVal === 'number' ? activeVal : 0}

@@ -15,30 +15,37 @@ export const filterData = (data, { start, end }) => {
   return setUpState(filteredData, data.currency_type)
 }
 // Reads files in
-export const processFiles = (files, setState, err, useExample) => {
+export const processFiles = (files, setState, err, pureCSV) => {
   if (!files.length) return
   let results = []
 
-  if (useExample) {
-    readCSVString(
-      files,
-      (res) => { results = [...results, ...res] },
-      err
-    )
+  if (pureCSV) {
+    files.forEach((file) => {
+      readCSVString(
+        file,
+        (res) => { results = [...results, ...res] },
+        err
+      )
+    })
     initState(results, setState, err)
   } else {
     files.forEach((file, i) => {
-      const fileReader = new FileReader()
-      fileReader.readAsText(file)
-      fileReader.onloadend = () => {
-        readCSVString(
-          fileReader.result,
-          (res) => { results = [...results, ...res] },
-          err
-        )
-        if (i === files.length - 1) {
-          initState(results, setState, err)
+      try {
+        const fileReader = new FileReader()
+        fileReader.readAsText(file)
+        fileReader.onloadend = () => {
+          readCSVString(
+            fileReader.result,
+            (res) => { results = [...results, ...res] },
+            err
+          )
+          if (i === files.length - 1) {
+            initState(results, setState, err)
+          }
         }
+      } catch (error) {
+        err(error)
+        throw new Error(error)
       }
     })
   }

@@ -1,25 +1,40 @@
-@import '../../styles/colors.module.scss';
-@import '../../styles/global.module.scss';
+@import '../../../../styles/colors.module.scss';
+@import '../../../../styles/global.module.scss';
 
 
 @mixin button {
   @include label;
   letter-spacing: 1px;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 20px;
   width: 100%;
   background: $highlight-color;
   color: $secondary-bg-color;
   border: none;
-  height: 30px;
+  height: 50px;
   transition: .1s;
   outline-color: $outline;
 }
 .container {
   width: 100%;
-  display: flex;
 }
-
+.topButtonContainer {
+  margin-bottom:10px;
+}
+.switchContainer {
+  @include label;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 18px;
+  text-transform: uppercase;
+  color: #7e7e7e;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+.label {
+  margin-left: 10px;
+}
 .modal {
   position: absolute;
   top: 50%;
@@ -36,13 +51,15 @@
   transform: translate(-50%, -50%);
   max-width: 100%;
   min-width: 350px;
+  width: 700px;
+  box-shadow: $box-shadow;
   overflow: auto;
     max-height: 800px;
 }
 
 .dropzone {
   margin-top: 10px;
-  border: 5px dashed $inactive-btn;
+  border: 5px dashed $inactive-btn ;
   min-height: 100px;
   display: flex;
   justify-content: center;
@@ -68,7 +85,8 @@
   color: $charcoal;
 }
 .dropzone:hover, .activeDropzone {
-  border-color: $charcoal;
+  transition: .2s;
+  border-style: dashed;
   color: $charcoal;
 }
 
@@ -101,22 +119,23 @@
   
 }
 .removeBtn {
-  margin-top: 10px;
-    border: 1px solid $primary-bg-color;
-    background: none;
-    padding: 5px;
-    cursor: pointer;
-    width:100%;
+  margin: 10px;
+  border: 1px solid $primary-bg-color;
+  background: none;
+  padding: 5px;
+  cursor: pointer;
+  height: 30px;
+  width:100%;
+  transition: .2s;
 }
 .removeBtn:hover {
   border-color: red;
-
 }
 .gifSubContainer {
   display:flex;
   color: $charcoal;
   align-items: center;
-  margin-bottom: 5px;
+  margin: 15px 0px;
 }
 .gifText {
   text-decoration: underline; 
@@ -126,8 +145,7 @@
   padding-left: 10px;
 }
 .gif {
-  width: 600px;
-  border: 1px solid $charcoal;
+  width: 100%;
 }
 
 .ol > li {
@@ -143,7 +161,7 @@
     display: none;
   }
   .modal {
-    max-width: none;
+    max-width: 80%;
     min-width: 10%;
   }
 }

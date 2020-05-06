@@ -1,6 +1,15 @@
 @import "./colors.module.scss";
 
 //mixins
+@mixin input {
+  background: $input;
+  border: none;
+  height: 35px;
+  padding-left: 15px;
+  color: $text-highlight;
+  font-size: 15px;
+  font-weight:600;
+}
 @mixin errorText {
   color: red;
   font-weight: 500;
