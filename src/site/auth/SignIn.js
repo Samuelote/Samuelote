@@ -106,6 +106,7 @@ const LOGIN = gql`
       email
       files
       accessToken
+      refreshToken
     }
   }
 `

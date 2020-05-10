@@ -1,8 +1,9 @@
 
 export const loginSetup = ({ login }, setState) => {
-  const { accessToken, files, email, account } = login
+  const { accessToken, refreshToken, files, email, account } = login
   // sets up cookies
   document.cookie = `pomc=${accessToken};`
+  document.cookie = `pomcer=${refreshToken};`
   // sets up tokens in state
   setState({
     user: {
